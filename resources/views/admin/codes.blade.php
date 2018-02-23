@@ -17,7 +17,11 @@
                     <div class="alert alert-danger">{{ $error }}</div>
                 @endforeach
             @endif
-            <form action="" method="post">
+            @if(Session::has('success'))
+                <div class="alert alert-info text-center">{{ Session::get('success') }}</div>
+            @endif
+            <form action="{{ route('_save_code') }}" method="post">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
@@ -59,7 +63,7 @@
                             <td class="text-center">{{ $code->amount_plain }}</td>
 
                             <td class="text-center">
-                                <a href="delete_code.php?id={{ $code->id }}" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deleteCode('{{ $code->id }}')" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

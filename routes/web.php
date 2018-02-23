@@ -90,7 +90,9 @@ Route::group(['middleware' => ['theme']], function () {
         Route::post('admin/video/add', 'VideosController@saveVideo')->name('_save_video');
 
         Route::get('admin/actor/add', 'AdminPagesController@addActor')->name('_add_actor');
+        Route::get('admin/actor/{id}/edit', 'AdminPagesController@editActor')->name('_edit_actor');
         Route::post('admin/actor/add', 'ActorsController@saveActor')->name('_save_actor');
+        Route::post('admin/actor/{id}/update', 'ActorsController@updateActor')->name('_update_actor');
 
         Route::get('admin/episode/add', 'AdminPagesController@addEpisode')->name('_add_episode');
         Route::post('admin/episode/add', 'EpisodesController@saveEpisode')->name('_save_episode');
@@ -103,6 +105,9 @@ Route::group(['middleware' => ['theme']], function () {
         Route::get('admin/page/add', 'AdminPagesController@addPage')->name('_add_page');
         Route::post('admin/page/add', 'CustomPagesController@savePage')->name('_save_page');
         Route::get('admin/page/{id}/delete', 'CustomPagesController@deletePage')->name('_delete_page');
+
+        Route::get('admin/code/{id}/delete', 'CodesController@deleteCode')->name('_delete_code');
+        Route::post('admin/code/save', 'CodesController@generateCode')->name('_save_code');
     });
 
 });

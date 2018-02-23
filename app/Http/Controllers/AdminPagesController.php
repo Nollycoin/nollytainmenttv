@@ -116,6 +116,14 @@ class AdminPagesController extends Controller
         return view('admin.add_actor');
     }
 
+    public function editActor($id)
+    {
+        $actor = Actor::findOrFail($id);
+        return view('admin.edit_actor', [
+            'actor' => $actor
+        ]);
+    }
+
     public function addEpisode()
     {
         $movies = Movie::all();

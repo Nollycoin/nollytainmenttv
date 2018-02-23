@@ -34,4 +34,53 @@ class CodesController extends Controller
             ]);
         }
     }
+
+    public function generateCode(Request $request){
+
+        $this->validate($request, [
+            'code_action' => 'required',
+            'code_amount' => 'required'
+        ]);
+
+        $code_value = substr(strtoupper(md5(rand())),0,3).'-'
+            .substr(strtoupper(md5(rand())),0,3).'-'
+            .substr(strtoupper(md5(rand())),0,3);
+
+        switch ($request->get('code_amount')) {
+            case '1_day':
+                $time = strtotime('+1 day',time());
+                $time_plain = '1 day';
+                break;
+            case '1_week':
+                $time = strtotime('+1 week',time());
+                $time_plain = '1 week';
+                break;
+            case '1_month':
+                $time = strtotime('+31 days',time());
+                $time_plain = '1 month';
+                break;
+            default:
+                $time = 0;
+                $time_plain = '1 day';
+                break;
+        }
+
+        $code = new Code();
+        $code->code = $code_value;
+        $code->amount = $time;
+        $code->amount_plain = $time_plain;
+        $code->action = $request->get('code_action');
+
+        $code->save();
+
+        return redirect(route('_codes'))->with('success', 'Code was generated successfully');
+    }
+
+    public function deleteCode($id)
+    {
+        $code = Code::findOrFail($id);
+        $code->delete();
+
+        return 'true';
+    }
 }

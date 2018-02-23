@@ -31,7 +31,7 @@
                                      background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)),
                                      url('{{ \App\Helpers\Constants::getUploadDirectory() }}/actors/{{$actor->actor_picture}}')">
                         </div>
-                        <div class="edit"><a href="edit_actor.php?id={{ $actor->id }}"><i class="ti-pencil"></i></a>
+                        <div class="edit"><a href="{{ route('_edit_actor', ['id' => $actor->id]) }}"><i class="ti-pencil"></i></a>
                         </div>
                         <div class="delete"><a href="delete_actor.php?id={{ $actor->id }}"><i class="ti-trash"></i></a>
                         </div>
