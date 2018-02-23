@@ -3,8 +3,7 @@
 @section('title', 'Pages')
 
 @section('navbar-brand')
-    <a class="navbar-brand" href="#">
-        Pages
+    <a class="navbar-brand" href="#">Pages
         <a href="{{ route('_add_page') }}" class="btn btn-success btn-fill btn-xs pull-left" style="margin-top:21px;">
             <i class="ti-plus"></i> Add Page
         </a>
@@ -29,7 +28,7 @@
                             <td class="text-center">{{ $page->page_name }}</td>
                             <td class="text-center">
                                 <a href="edit_page.php?id={{ $page->id }}" class="btn btn-success">Edit</a>
-                                <a href="delete_page.php?id={{ $page->id }}" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deletePage('{{ $page->id }}')" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

@@ -126,4 +126,11 @@ class UsersController extends Controller
 
         return redirect(route('_users'));
     }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->profile->delete();
+        $user->delete();
+    }
 }

@@ -30,7 +30,7 @@
                 <li class="@yield('_dashboard_active')">
                     <a href="{{ route('_dashboard') }}">
                         <i class="ti-panel"></i>
-                        <p>Dashboard</p>
+                        <p> Dashboard </p>
                     </a>
                 </li>
                 <li class="@yield('_users_active')">
@@ -136,4 +136,5 @@
 <script src="{{ asset('admin/assets/js/bootstrap-notify.js') }}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="{{ asset('admin/assets/js/theme.js') }}"></script>
+<script src="{{ asset('admin/assets/js/admin.app.js') }}"></script>
 </html>

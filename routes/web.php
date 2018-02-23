@@ -82,25 +82,27 @@ Route::group(['middleware' => ['theme']], function () {
         Route::get('/admin/themes', 'AdminPagesController@themes')->name('_themes');
         Route::get('/admin/settings', 'AdminPagesController@settings')->name('_settings');
 
-        Route::get('/admin/user/add', 'AdminPagesController@addUser')->name('_add_user');
-        Route::post('/admin/user/add', 'UsersController@saveUser')->name('_save_user');
+        Route::get('admin/user/add', 'AdminPagesController@addUser')->name('_add_user');
+        Route::post('admin/user/add', 'UsersController@saveUser')->name('_save_user');
+        Route::post('admin/user/delete', 'UsersController@deleteUser')->name('_delete_user');
 
-        Route::get('/admin/video/add', 'AdminPagesController@addVideo')->name('_add_video');
-        Route::post('/admin/video/add', 'VideosController@saveVideo')->name('_save_video');
+        Route::get('admin/video/add', 'AdminPagesController@addVideo')->name('_add_video');
+        Route::post('admin/video/add', 'VideosController@saveVideo')->name('_save_video');
 
-        Route::get('/admin/actor/add', 'AdminPagesController@addActor')->name('_add_actor');
-        Route::post('/admin/actor/add', 'ActorsController@saveActor')->name('_save_actor');
+        Route::get('admin/actor/add', 'AdminPagesController@addActor')->name('_add_actor');
+        Route::post('admin/actor/add', 'ActorsController@saveActor')->name('_save_actor');
 
-        Route::get('/admin/episode/add', 'AdminPagesController@addEpisode')->name('_add_episode');
-        Route::post('/admin/episode/add', 'EpisodesController@saveEpisode')->name('_save_episode');
+        Route::get('admin/episode/add', 'AdminPagesController@addEpisode')->name('_add_episode');
+        Route::post('admin/episode/add', 'EpisodesController@saveEpisode')->name('_save_episode');
 
-        Route::get('/admin/genre/add', 'AdminPagesController@addGenre')->name('_add_genre');
-        Route::post('/admin/genre/add', 'GenresController@saveGenre')->name('_save_genre');
+        Route::get('admin/genre/add', 'AdminPagesController@addGenre')->name('_add_genre');
+        Route::post('admin/genre/add', 'GenresController@saveGenre')->name('_save_genre');
 
-        Route::post('/admin/settings/save', 'SettingsController@saveSettings')->name('_save_settings');
+        Route::post('admin/settings/save', 'SettingsController@saveSettings')->name('_save_settings');
 
-        Route::get('/admin/page/add', 'AdminPagesController@addPage')->name('_add_page');
-        Route::post('/admin/page/add', 'CustomPagesController@savePage')->name('_save_page');
+        Route::get('admin/page/add', 'AdminPagesController@addPage')->name('_add_page');
+        Route::post('admin/page/add', 'CustomPagesController@savePage')->name('_save_page');
+        Route::get('admin/page/{id}/delete', 'CustomPagesController@deletePage')->name('_delete_page');
     });
 
 });

@@ -42,7 +42,7 @@
                             @endif
                             <td class="text-center">
                                 <a href="edit_user.php?id={{ $user->id }}" class="btn btn-success">Edit</a>
-                                <a href="delete_user.php?id={{ $user->id }}" class="btn btn-danger">Delete</a>
+                                <a href="#" onclick="deleteUser('{{ $user->id }}')" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

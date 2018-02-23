@@ -24,4 +24,12 @@ class CustomPagesController extends Controller
 
         return redirect(route('_pages'));
     }
+
+    public function deletePage($id){
+        $page = Page::findOrFail($id);
+
+        $page->delete();
+
+        return 'true';
+    }
 }
