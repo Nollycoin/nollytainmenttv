@@ -1,9 +1,7 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-
 INSERT INTO `actors` (`id`, `actor_name`, `actor_picture`) VALUES
 (2, 'Charlie Cox', '1.jpg'),
 (4, 'Deborah Ann Wolf', '2.jpg'),
-(5, 'Vincent D''Onofrio', '3.jpg'),
+(5, 'Vincent D Onofrio', '3.jpg'),
 (6, 'Jon Bernthal', '4.jpg'),
 (7, 'Elodie Yung', '5.jpg'),
 (11, 'Richard Hammond', '6.jpg'),

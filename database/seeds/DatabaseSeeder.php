@@ -12,6 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $sql = file_get_contents(database_path().'/seeds/nollytainment.sql');
-        \Illuminate\Support\Facades\DB::statement($sql);
+        DB::unprepared($sql);
     }
 }
