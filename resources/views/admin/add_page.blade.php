@@ -1,19 +1,19 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Add Actor')
+@section('title', 'Add Page')
 
 @section('navbar-brand')
-    <a class="navbar-brand" href="#">Add Actor</a>
+    <a class="navbar-brand" href="#">Add Page</a>
 @endsection
 
-@section('_actors_active', 'active')
+@section('_pages_active', 'active')
 
 @section('body')
     <div class="content">
         <div class="container-fluid">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">New Actor</h4>
+                    <h4 class="title">Add New Page</h4>
                 </div>
                 <div class="content">
                     @if($errors->any())
@@ -25,29 +25,30 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('_save_actor') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('_save_page') }}" method="post">
 
                         {{ csrf_field() }}
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label>Actor Name</label>
-                                    <input type="text" name="actor_name" value="{{ old('actor_name') }}"
-                                           class="form-control border-input"
-                                           placeholder="Enter a name for Actor" required>
+                                    <label>Page Name</label>
+                                    <input type="text" name="page_name" class="form-control border-input"
+                                           placeholder="Enter a name for this page" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label>Actor Picture</label>
-                                    <input type="file" value="{{ old('actor_picture') }}" name="actor_picture" class="form-control border-input" required>
+                                    <label>Page Content</label>
+                                    <textarea name="page_content" class="form-control"
+                                              placeholder="Enter some content for this page" rows="5" cols="20" required></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="pull-left">
-                            <button type="submit" name="add" class="btn btn-success btn-fill btn-wd">Add Actor</button>
+                            <button type="submit" name="add" class="btn btn-success btn-fill btn-wd">Add Page</button>
                         </div>
                         <div class="clearfix"></div>
                     </form>

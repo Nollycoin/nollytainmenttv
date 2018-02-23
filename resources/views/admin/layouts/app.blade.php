@@ -27,61 +27,61 @@
             </div>
 
             <ul class="nav" style="margin-top: -15px;">
-                <li class="active">
+                <li class="@yield('_dashboard_active')">
                     <a href="{{ route('_dashboard') }}">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_users_active')">
                     <a href="{{ route('_users') }}">
                         <i class="ti-user"></i>
                         <p>Users</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_categories_active')">
                     <a href="{{ route('_categories') }}">
                         <i class="ti-view-list"></i>
                         <p>Categories</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_videos_active')">
                     <a href="{{ route('_videos') }}">
                         <i class="ti-video-clapper"></i>
                         <p>Videos</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_episodes_active')">
                     <a href="{{ route('_episodes') }}">
                         <i class="ti-video-clapper"></i>
                         <p>Episodes</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_actors_active')">
                     <a href="{{ route('_actors') }}">
                         <i class="ti-star"></i>
                         <p>Actors</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_codes_active')">
                     <a href="{{ route('_codes') }}">
                         <i class="ti-ticket"></i>
                         <p>Codes</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_pages_active')">
                     <a href="{{ route('_pages') }}">
                         <i class="ti-file"></i>
                         <p>Pages</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_themes_active')">
                     <a href="{{ route('_themes') }}">
                         <i class="ti-palette"></i>
                         <p>Themes</p>
                     </a>
                 </li>
-                <li>
+                <li class="@yield('_settings_active')">
                     <a href="{{ route('_settings') }}">
                         <i class="ti-settings"></i>
                         <p>Settings</p>

@@ -75,8 +75,6 @@ class UsersController extends Controller
 
     public function saveUser(Request $request)
     {
-        //dd($request);
-
         $this->validate($request, [
             'user_name' => 'required',
             'user_email' => 'required|email|unique:users,email',

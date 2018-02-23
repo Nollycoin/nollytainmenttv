@@ -1,6 +1,6 @@
 <?php
 
-use \Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +98,9 @@ Route::group(['middleware' => ['theme']], function () {
         Route::post('/admin/genre/add', 'GenresController@saveGenre')->name('_save_genre');
 
         Route::post('/admin/settings/save', 'SettingsController@saveSettings')->name('_save_settings');
+
+        Route::get('/admin/page/add', 'AdminPagesController@addPage')->name('_add_page');
+        Route::post('/admin/page/add', 'CustomPagesController@savePage')->name('_save_page');
     });
 
 });

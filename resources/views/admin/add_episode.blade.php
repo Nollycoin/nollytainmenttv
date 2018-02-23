@@ -6,6 +6,8 @@
     <a class="navbar-brand" href="#">Add Episode</a>
 @endsection
 
+@section('_episodes_active', 'active')
+
 @section('body')
     <div class="content">
         <div class="container-fluid">

@@ -22,12 +22,6 @@ class PagesController extends Controller
 
     public function __construct(Request $request)
     {
-        $sql = file_get_contents(database_path().'/seeds/nollytainment.sql');
-
-        $sql = str_replace('\n', '', $sql);
-
-        dd($sql);
-
         $genres = Genre::all();
         $pages = Page::orderBy('id', 'desc')->get();
         $settings = Setting::where('id', 1)->first();
@@ -239,8 +233,6 @@ class PagesController extends Controller
 
     public function series(Request $request)
     {
-
-
         $series = [];
 
         if ($request->has('filter')) {

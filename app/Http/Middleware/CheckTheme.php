@@ -15,9 +15,8 @@ class CheckTheme
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->has('theme_view_path')) {
-            //session('theme_view_path', 'themes.flixer');
-            //Session::put()
+        if (false) {
+           /*check for theme here...handled by page controller presently*/
         }
 
         return $next($request);

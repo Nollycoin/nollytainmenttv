@@ -7,6 +7,8 @@
     <a class="navbar-brand" href="#">Settings</a>
 @endsection
 
+@section('_codes_active', 'active')
+
 @section('body')
     <div class="content">
         <div class="container-fluid">

@@ -7,6 +7,8 @@
     <a class="navbar-brand" href="#">Dashboard</a>
 @endsection
 
+@section('_dashboard_active', 'active')
+
 @section('body')
     <div class="content">
         <div class="container-fluid">

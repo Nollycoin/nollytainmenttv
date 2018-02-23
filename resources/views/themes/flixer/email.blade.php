@@ -20,6 +20,9 @@
                                 </ul>
                             </div>
                         @endif
+                        @if(Session::has('success'))
+                            <div class="alert alert-info text-center">{{ Session::get('success') }}</div>
+                        @endif
                         <form action="{{ route('change_email_post') }}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">

@@ -14,11 +14,7 @@ class CodesController extends Controller
             'code' => 'required|exists:codes,code'
         ]);
 
-        Auth::user()->update([
-            'phone' => '1234568'
-        ]);
-
-        $code = Code::where('code', $request->get('code'));
+        $code = Code::where('code', $request->get('code'))->first();
         if ($code != null){
             if($code->action == 'add_subscription'){
                 Auth::user()->update([

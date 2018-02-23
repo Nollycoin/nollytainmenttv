@@ -8,6 +8,8 @@
     </a>
 @endsection
 
+@section('_themes_active', 'active')
+
 @section('body')
     <div class="content">
         <div class="container-fluid">

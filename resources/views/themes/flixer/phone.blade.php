@@ -20,6 +20,9 @@
                                 </ul>
                             </div>
                         @endif
+                        @if(Session::has('success'))
+                            <div class="alert alert-info text-center">{{ Session::get('success') }}</div>
+                        @endif
                         <form action="" method="post">
                             <div class="form-group">
                                 <label class="first">Mobile Phone Number</label>

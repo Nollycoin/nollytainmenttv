@@ -6,6 +6,8 @@
     <a class="navbar-brand" href="#">Add User</a>
 @endsection
 
+@section('_users_active', 'active')
+
 @section('body')
     <div class="content">
         <div class="container-fluid">

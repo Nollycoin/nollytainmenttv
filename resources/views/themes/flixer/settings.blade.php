@@ -49,7 +49,7 @@
                                 </div>
                                 @if($errors->has('code'))
                                     <div class="alert alert-danger">
-                                        {{ $errors->get('code') }}
+                                        {{ $errors->first('code') }}
                                     </div>
                                 @endif
                             </form>

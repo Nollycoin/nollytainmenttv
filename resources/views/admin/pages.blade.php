@@ -5,11 +5,13 @@
 @section('navbar-brand')
     <a class="navbar-brand" href="#">
         Pages
-        <a href="add_page.php" class="btn btn-success btn-fill btn-xs pull-left" style="margin-top:21px;">
+        <a href="{{ route('_add_page') }}" class="btn btn-success btn-fill btn-xs pull-left" style="margin-top:21px;">
             <i class="ti-plus"></i> Add Page
         </a>
     </a>
 @endsection
+
+@section('_pages_active', 'active')
 
 @section('body')
     <div class="content">

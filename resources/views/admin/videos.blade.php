@@ -11,6 +11,8 @@
     </a>
 @endsection
 
+@section('_videos_active', 'active')
+
 @section('body')
     <div class="content">
         <div class="container-fluid">

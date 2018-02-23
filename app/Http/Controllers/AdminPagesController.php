@@ -130,4 +130,8 @@ class AdminPagesController extends Controller
             'settings' => Setting::where('id', 1)->first()
         ]);
     }
+
+    public function addPage(){
+        return view('admin.add_page');
+    }
 }
