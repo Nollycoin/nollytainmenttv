@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\ActorRelation;
+use App\Episode;
 use App\Helpers\Constants;
 use App\Movie;
+use App\MyList;
+use App\Rating;
+use App\Season;
 use App\Setting;
 use Illuminate\Http\Request;
 
@@ -24,14 +28,6 @@ class VideosController extends Controller
             'video_poster' => 'required|image|max:10024',
             'video_actors' => 'required'
         ]);
-        /*$db->query("INSERT INTO movies (movie_name,movie_plot,movie_genres,
-movie_poster_image,movie_thumb_image,movie_plays,movie_source,is_embed,
-is_featured,is_kid_friendly,free_to_watch)
-     VALUES ('" . $video_name . "','" . $video_description . "','"
-            . $video_categories . "','" . $new_file_name_2 . "','"
-            . $new_file_name . "','0','" . $source . "','" . $video_format
-            . "','" . $is_featured . "','" . $is_kid_friendly . "','" . $free_to_watch
-            . "')");*/
 
         $movie = new Movie();
         $movie->movie_name = $request->get('video_name');
@@ -79,5 +75,20 @@ is_featured,is_kid_friendly,free_to_watch)
 
 
         return redirect(route('_videos'));
+    }
+
+    public function deleteVideo($id){
+        $video = Movie::findOrFail($id);
+
+        //actor relations, episodes, my list, ratings , seasons
+        ActorRelation::where('movie_id', $video->id)->delete();
+        Episode::where('movie_id', $video->id)->delete();
+        MyList::where('movie_id', $video->id)->delete();
+        Rating::where('movie_id', $video->id)->delete();
+        Season::where('movie_id', $video->id)->delete();
+
+        $video->delete();
+
+        return 'true';
     }
 }

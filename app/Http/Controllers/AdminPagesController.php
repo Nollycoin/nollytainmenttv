@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actor;
+use App\ActorRelation;
 use App\Code;
 use App\Episode;
 use App\Genre;
@@ -140,6 +141,27 @@ class AdminPagesController extends Controller
             'genres' => $genres,
             'actors' => $actors,
             'settings' => $settings
+        ]);
+    }
+
+    public function editVideo($id){
+
+        $video = Movie::findOrFail($id);
+        $genres = Genre::all();
+        $actors = Actor::all();
+
+        foreach ($actors as $actor){
+            if (ActorRelation::where('movie_id', $id)->where('actor_id', $actor->id)->first() != null)
+                $actor->is_in_cast = 1;
+            else
+                $actor->is_in_cast = 0;
+        }
+
+        return view('admin.edit_video', [
+            'movie' => $video,
+            'genres' => $genres,
+            'settings' => Setting::find(1),
+            'actors' => $actors
         ]);
     }
 

@@ -90,6 +90,9 @@ Route::group(['middleware' => ['theme']], function () {
 
         Route::get('admin/video/add', 'AdminPagesController@addVideo')->name('_add_video');
         Route::post('admin/video/add', 'VideosController@saveVideo')->name('_save_video');
+        Route::post('admin/video/{id}/update', 'VideosController@saveVideo')->name('_update_video');
+        Route::get('admin/video/{id}/delete', 'VideosController@deleteVideo')->name('_delete_video');
+        Route::get('admin/video/{id}/edit', 'AdminPagesController@editVideo')->name('_edit_video');
 
         Route::get('admin/actor/add', 'AdminPagesController@addActor')->name('_add_actor');
         Route::get('admin/actor/{id}/edit', 'AdminPagesController@editActor')->name('_edit_actor');
