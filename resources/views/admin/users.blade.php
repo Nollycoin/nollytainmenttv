@@ -41,7 +41,7 @@
                                 <td class="text-center"> Admin</td>
                             @endif
                             <td class="text-center">
-                                <a href="edit_user.php?id={{ $user->id }}" class="btn btn-success">Edit</a>
+                                <a href="{{ route('_edit_user', [ 'id' => $user->id ]) }}" class="btn btn-success">Edit</a>
                                 <a href="#" onclick="deleteUser('{{ $user->id }}')" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>

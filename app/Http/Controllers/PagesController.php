@@ -66,7 +66,7 @@ class PagesController extends Controller
         return view('themes.flixer.register', array_merge($this->dataForPages, []));
     }
 
-    public function video(Request $request, $id)
+    public function video($id)
     {
         $movie = Movie::findOrFail($id);
         $actors = [];

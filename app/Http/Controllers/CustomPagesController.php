@@ -25,7 +25,23 @@ class CustomPagesController extends Controller
         return redirect(route('_pages'));
     }
 
-    public function deletePage($id){
+    public function updatePage(Request $request, $id)
+    {
+        $page = Page::findOrFail($id);
+
+        if ($request->has('page_name'))
+            $page->page_name = $request->get('page_name');
+
+        if ($request->has('page_content'))
+            $page->page_content = $request->get('page_content');
+
+        $page->update();
+
+        return redirect(route('_edit_page', ['id' => $page->id]))->with('success', 'Page Updated successfully');
+    }
+
+    public function deletePage($id)
+    {
         $page = Page::findOrFail($id);
 
         $page->delete();

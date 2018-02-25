@@ -127,6 +127,45 @@ class UsersController extends Controller
         return redirect(route('_users'));
     }
 
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $this->validate($request, [
+            'user_name' => 'sometimes|string',
+            'user_email' => 'sometimes|email',
+            'user_password' => 'sometimes'
+        ]);
+
+        if ($request->has('user_name'))
+            $user->name = $request->get('user_name');
+        if ($request->has('user_email'))
+            $user->email = $request->get('user_email');
+        if ($request->has('user_phone'))
+            $user->phone = $request->get('user_phone');
+        if ($request->has('user_password'))
+            $user->password = bcrypt($request->get('user_password'));
+
+        if ($request->has('user_rank')) {
+            $rank = $request->get('user_rank');
+            if ($rank === 'subscriber') {
+                $user->is_admin = 0;
+                $user->is_subscriber = 1;
+                $user->subscription_expiration = strtotime('+31 days', time());
+            } else if ($rank === 1) {
+                $user->is_subscriber = 1;
+                $user->is_admin = 1;
+            } else {
+                $user->is_subscriber = 0;
+                $user->is_admin = 0;
+            }
+        }
+
+        $user->update();
+
+        return redirect(route('_edit_user', [ 'id' => $user->id ]))->with('success', 'User was updated successfully');
+    }
+
     public function deleteUser($id)
     {
         $user = User::findOrFail($id);

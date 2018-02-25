@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actor;
+use App\ActorRelation;
 use App\Helpers\Constants;
 use Illuminate\Http\Request;
 
@@ -61,5 +62,19 @@ class ActorsController extends Controller
         return redirect(route('_edit_actor', ['id' => $actor->id]))->with([
             'success' => 'Edit was successful'
         ]);
+    }
+
+    public function deleteActor($id)
+    {
+
+        $actor = Actor::findOrFail($id);
+
+        unlink(public_path(Constants::getUploadDirectory() . '/actors/' . $actor->actor_picture));
+
+        ActorRelation::where('actor_id', $actor->id)->delete();
+
+        $actor->delete();
+
+        return 'true';
     }
 }

@@ -33,7 +33,7 @@
                         </div>
                         <div class="edit"><a href="{{ route('_edit_actor', ['id' => $actor->id]) }}"><i class="ti-pencil"></i></a>
                         </div>
-                        <div class="delete"><a href="delete_actor.php?id={{ $actor->id }}"><i class="ti-trash"></i></a>
+                        <div class="delete"><a href="#" onclick="deleteActor('{{ $actor->id }}')"><i class="ti-trash"></i></a>
                         </div>
                         <div class="title">{{ \App\Helpers\Constants::trimNames($actor->actor_name) }}</div>
                     </div>

@@ -38,8 +38,8 @@
                             @endif
 
                             <td class="text-center">
-                                <a href="edit_category.php?id={{ $genre->id }}" class="btn btn-success">Edit</a>
-                                <a href="delete_category.php?id={{ $genre->id }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('_edit_genre', ['id' => $genre->id]) }}" class="btn btn-success">Edit</a>
+                                <a href="#" onclick="deleteCategory('{{ $genre->id }}')" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

@@ -27,7 +27,7 @@
                             <td class="text-center">{{ $page->id }}</td>
                             <td class="text-center">{{ $page->page_name }}</td>
                             <td class="text-center">
-                                <a href="edit_page.php?id={{ $page->id }}" class="btn btn-success">Edit</a>
+                                <a href="{{ route('_edit_page', ['id'=> $page->id ]) }}" class="btn btn-success">Edit</a>
                                 <a href="#" onclick="deletePage('{{ $page->id }}')" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
