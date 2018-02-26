@@ -77,7 +77,96 @@ class VideosController extends Controller
         return redirect(route('_videos'));
     }
 
-    public function deleteVideo($id){
+    public function updateVideo(Request $request, $id)
+    {
+        $movie = Movie::findOrFail($id);
+        $settings = Setting::find(1);
+        $this->validate($request, [
+            'video_name' => 'sometimes',
+            'video_description' => 'sometimes',
+            'video_categories' => 'sometimes',
+            'video_format' => 'sometimes',
+            'is_featured' => 'sometimes',
+            'video_actors' => 'sometimes'
+        ]);
+
+        if ($request->has('is_kid_friendly')){
+            if ($settings->kid_profiles == 0) {
+                $movie->is_kid_friendly = 0;
+            } else {
+                $movie->is_kid_friendly = $request->get('is_kid_friendly');
+            }
+        }
+
+        if($request->has('video_name'))
+            $movie->movie_name = $request->get('video_name');
+
+        if($request->has('video_description'))
+            $movie->movie_plot = $request->get('video_description');
+
+        if ($request->has('video_categories'))
+            $movie->movie_genres = implode(',', $request->get('video_categories'));
+
+        if($request->has('video_format') && ($request->has('video_embed_code')
+                || $request->has('video_file_mp4'))){
+            if ($request->video_format == 1) {
+                $movie->movie_source = $request->get('video_embed_code');
+            } else {
+                $movie->movie_source = $request->get('video_file_mp4');
+            }
+        }
+
+        if ($request->has('is_featured'))
+            $movie->is_featured =  $request->get('is_featured');
+
+        if ($request->has('free_to_watch'))
+            $movie->free_to_watch = $request->get('free_to_watch');
+
+        if ($request->hasFile('video_thumbnail') && isset($request->video_thumnail)){
+            $videoThumbImage = $request->file('video_thumbnail');
+
+            $videoThumbImageName = md5(mt_rand()) . $videoThumbImage->getClientOriginalName();
+            unlink(public_path(Constants::getUploadDirectory().'masonry_images/'.$movie->movie_thumb_image));
+            $videoThumbImage->move(public_path(Constants::getUploadDirectory() . '/masonry_images/'),
+                $videoThumbImageName);
+        }
+
+        if ($request->hasFile('video_poster') && isset($request->video_poster)){
+            $videoPosterImage = $request->file('video_poster');
+
+            $videoPosterImageName = md5(mt_rand()) . $videoPosterImage->getClientOriginalName();
+
+            unlink(public_path(Constants::getUploadDirectory().'/poster_images/'.$movie->movie_poster_image));
+
+            $videoPosterImage->move(public_path(Constants::getUploadDirectory() . '/poster_images/'),
+                $videoPosterImageName);
+
+            $movie->movie_poster_image = $videoPosterImageName;
+
+        }
+
+        if ($request->has('video_actors')){
+            ActorRelation::where('movie_id', $id)->delete();
+
+            $actors = $request->get('video_actors');
+            $movie_id = $movie->id;
+            foreach ($actors as $actor => $actor_id) {
+                $actorRelation = new ActorRelation();
+                $actorRelation->movie_id = $movie_id;
+                $actorRelation->actor_id = $actor_id;
+
+                $actorRelation->save();
+            }
+        }
+
+        $movie->update();
+
+        return redirect(route('_edit_video', ['id'=>$movie->id]))->with('success', 'Video was edited successfully');
+    }
+
+    public
+    function deleteVideo($id)
+    {
         $video = Movie::findOrFail($id);
 
         //actor relations, episodes, my list, ratings , seasons

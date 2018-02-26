@@ -33,10 +33,10 @@
                                      background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)),
                                      url('{{ \App\Helpers\Constants::getUploadDirectory() }}/episodes/{{ $episode->episode_thumbnail }}')">
                         </div>
-                        <div class="edit"><a href="edit_episode.php?id={{ $episode->id }}"><i
+                        <div class="edit"><a href="{{ route('_edit_episode', ['id' => $episode->id]) }}"><i
                                         class="ti-pencil"></i></a></div>
                         <div class="delete"><a
-                                    href="delete_episode.php?id={{ $episode->id }}&season_id={{ $episode->season_id }}"><i
+                                    href="#" onclick="deleteEpisode('{{ $episode->id }}')"><i
                                         class="ti-trash"></i></a></div>
                         <div class="title">{{ $episode->episode_name }}</div>
                     </div>

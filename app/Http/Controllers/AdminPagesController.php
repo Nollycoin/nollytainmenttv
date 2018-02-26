@@ -9,6 +9,7 @@ use App\Episode;
 use App\Genre;
 use App\Movie;
 use App\Page;
+use App\Season;
 use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
@@ -184,6 +185,19 @@ class AdminPagesController extends Controller
 
         return view('admin.add_episode', [
             'movies' => $movies
+        ]);
+    }
+
+    public function editEpisode($id)
+    {
+        $episode = Episode::findOrFail($id);
+        $movies = Movie::all();
+        $season = Season::findOrFail($episode->season_id);
+
+        return view('admin.edit_episode', [
+            'episode' => $episode,
+            'movies' => $movies,
+            'season' => $season
         ]);
     }
 

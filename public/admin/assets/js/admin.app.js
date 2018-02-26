@@ -82,3 +82,17 @@ function deleteVideo(id) {
     }
     return false;
 }
+
+function deleteEpisode(id) {
+    if (confirm('Are you sure you want to delete this episode?')) {
+        $.get('/admin/episode/' + id + '/delete', function (data) {
+            if (data) {
+                alert('Episode was deleted successfully');
+                window.location.reload();
+            } else {
+                alert('An error occurred while deleting episode');
+            }
+        });
+    }
+    return false;
+}

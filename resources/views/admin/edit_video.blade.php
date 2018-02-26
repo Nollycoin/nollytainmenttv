@@ -31,6 +31,7 @@
                     <form action="{{ route('_update_video', ['id'=> $movie->id]) }}" method="post"
                           enctype="multipart/form-data">
                         <div class="row">
+                            {{ csrf_field() }}
                             <div class="col-lg-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading panel-title">Video Name</div>

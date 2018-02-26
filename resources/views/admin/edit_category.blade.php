@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Codes')
+@section('title', 'Edit Category')
 
 
 @section('navbar-brand')
-    <a class="navbar-brand" href="#">Edit Page</a>
+    <a class="navbar-brand" href="#">Edit Category</a>
 @endsection
 
 @section('_categories_active', 'active')
