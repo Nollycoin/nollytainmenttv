@@ -21,8 +21,10 @@
                             </p>
                         </div>
                         <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Unlimited Movies & Series</li>
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Share your account with up to 4
+                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Unlimited Movies & Series
+                            </li>
+                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Share your account with up
+                                to 4
                                 people
                             </li>
                             <li class="list-group-item"><i class="icon-ok text-danger"></i> Create a playlist with your
@@ -53,12 +55,13 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <form action="" method="post">
+                            <form action="{{ route('register') }}" method="post">
                                 <div class="form-group">
                                     <label>
                                         <span>Full Name *</span>
                                     </label>
                                     <input type="text" name="full_name" required class="form-control"/>
+                                    {{ csrf_field() }}
                                 </div>
                                 <div class="form-group">
                                     <label>
@@ -74,12 +77,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>
+                                        <span>Password Confirmation*</span>
+                                    </label>
+                                    <input type="password" name="password_confirmation" required class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>
                                         <span>Phone </span>
                                     </label>
                                     <input type="text" name="phone" class="form-control"/>
                                 </div>
-                                <button type="submit" name="continue"
-                                        class="btn btn-danger btn-fill pull-right">Continue</button>
+                                <button type="submit" id="register-btn" class="btn btn-danger btn-fill pull-right">
+                                    Continue
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -87,4 +97,17 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('js')
+<script>
+    $('#register-btn').on('click', function(e){
+        /*a bit of validation here*/
+        e.preventDefault();
+        $.post('/register', function (data) {
+            console.log(data);
+        })
+    });
+</script>
 @endsection

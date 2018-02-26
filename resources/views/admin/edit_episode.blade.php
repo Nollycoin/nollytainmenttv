@@ -2,7 +2,6 @@
 
 @section('title', 'Edit Episode')
 
-
 @section('navbar-brand')
     <a class="navbar-brand" href="#">Edit Episode</a>
 @endsection

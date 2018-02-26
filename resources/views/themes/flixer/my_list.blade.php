@@ -13,10 +13,9 @@
 
                     @foreach($myList as $item)
                         <div class="item">
-                            <a href="{{ route('view_video', [$item->id]) }}">
+                            <a href="{{ route('view_video', [ $item->id]) }}">
                                 <img src="{{
-                                \App\Helpers\Constants::getUploadDirectory() }}
-                                        /masonry_images/{{ $item->movie_thumb_image }}">
+                                \App\Helpers\Constants::getUploadDirectory() }}/masonry_images/{{ $item->movie_thumb_image }}">
                                 <div class="play">
                                     <i class="icon icon-play3"></i>
                                 </div>

@@ -62,7 +62,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading panel-title">Video Categories</div>
                                     <div class="panel-body">
-                                        <select name="video_categories[]" multiple="multiple"
+                                        <select title="video genres" name="video_categories[]" multiple="multiple"
                                                 class="form-control chosen">
                                             @foreach($genres as $genre)
                                                 @if(preg_match('~\b'. (string)$genre->id .'\b~', $movie->movie_genres))
@@ -83,14 +83,14 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading panel-title">Video Actors</div>
                                         <div class="panel-body">
-                                            <select name="video_actors[]" multiple="multiple"
+                                            <select title="video actors" name="video_actors[]" multiple="multiple"
                                                     class="form-control chosen">
                                                 @foreach($actors as $actor)
                                                     @if($actor->is_in_cast == 1)
                                                         <option value="{{ $actor->id }}"
                                                                 selected>{{ $actor->actor_name }}</option>
                                                     @else
-                                                        <option value="{{ $actor->id }}"></option>
+                                                        <option value="{{ $actor->id }}">{{ $actor->actor_name }}</option>
                                                     @endif
                                                 @endforeach
                                             </select>

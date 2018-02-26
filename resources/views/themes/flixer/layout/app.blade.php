@@ -170,6 +170,8 @@ TODO:: Please try and put this line back in the code when everything works
 
 --}}
 
+@yield('js')
+
 </body>
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">

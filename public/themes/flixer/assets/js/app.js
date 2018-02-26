@@ -112,7 +112,7 @@ function loadEpisode(episode_id, is_embed) {
 }
 
 function addToList(movie_id) {
-    $.get(base + 'movie/'+movie_id+'/add_to_list', function (data) {
+    $.get('movie/'+movie_id+'/add_to_list', function (data) {
         $('.add-list').html(data);
     });
 }
