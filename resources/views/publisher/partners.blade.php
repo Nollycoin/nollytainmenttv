@@ -5,7 +5,8 @@
 @section('navbar-brand')
     <a class="navbar-brand" href="#">
         Partners
-        <a href="{{ route('_add_partner') }}" class="btn btn-success btn-fill btn-xs pull-left" style="margin-top:21px;">
+        <a href="{{ route('_add_partner') }}" class="btn btn-success btn-fill btn-xs pull-left"
+           style="margin-top:21px;">
             <i class="ti-plus"></i>
             Add Partner
         </a>
@@ -32,16 +33,10 @@
                         <tr>
                             <td class="text-center">{{ $user->email }}</td>
                             <td class="text-center">{{ $user->name }}</td>
-                            @if($user->is_admin == 0 && $user->is_subscriber == 0)
-                                <td class="text-center"> User</td>
-                            @elseif($user->is_admin == 0 && $user->is_subscriber == 1)
-                                <td class="text-center"> Subscriber</td>
-                            @else
-                                <td class="text-center"> Admin</td>
-                            @endif
-                            <td class="text-center">30</td>
+                            <td class="text-center">{{ $user->phone }}</td>
+                            <td class="text-center">{{ $user->share }}%</td>
                             <td class="text-center">
-                                <a href="#" onclick="deleteUserNow('{{ $user->id }}')" class="btn btn-danger">Remove</a>
+                                <a href="#" onclick="deletePartner('{{ $user->id }}')" class="btn btn-danger">Remove</a>
                             </td>
                         </tr>
                     @endforeach

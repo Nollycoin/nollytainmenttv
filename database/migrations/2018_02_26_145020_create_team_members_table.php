@@ -18,6 +18,7 @@ class CreateTeamMembersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('team_id')->unsigned();
             $table->double('share', 3, 2);
+            $table->string('wallet_address', 255)->nullable();
             $table->timestamps();
         });
     }

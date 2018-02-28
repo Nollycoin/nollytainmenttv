@@ -46,9 +46,11 @@ Route::get('/movie/{id}/rating/update/{rating}', 'MoviesController@getMovieRatin
 
 Route::get('/publisher/dashboard', 'PublisherPagesController@index')->name('publisher_dashboard');
 Route::get('/publisher/partners', 'PublisherPagesController@partners')->name('_partners_');
+Route::get('/publisher/partner/{id}/delete', 'PartnersController@deletePartner')->name('_delete_partners_');
 
 Route::get('/publisher/partners/add', 'PublisherPagesController@addPartner')->name('_add_partner');
 Route::get('/publisher/partner/search', 'PartnersController@findNewPartner')->name('_find_new_partner');
+Route::post('/publisher/partner/save', 'PartnersController@addPartner')->name('_save_new_partner');
 
 
 Route::group(['middleware' => ['auth']], function () {

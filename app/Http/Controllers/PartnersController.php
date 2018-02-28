@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PartnersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function findNewPartner(Request $request)
     {
         $this->validate($request, [
@@ -20,48 +25,57 @@ class PartnersController extends Controller
 
         $pendingPartner = User::where('email', $request->user_email)->first();
 
-        if (Auth::user()->team != null){
+        if (Auth::user()->team != null) {
             $verify = TeamMember::where('user_id', $pendingPartner->id)
                 ->where('team_id', Auth::user()->team->id)->count();
-            if ($verify > 0){
-                return redirect()->back()->withErrors([
+            if ($verify > 0) {
+                return redirect(route('_add_partner'))->withErrors([
                     'exists_on_team' => "User with email: $request->user_email already exists on your team"
                 ]);
             }
         }
-
         return view('publisher.add_partner', [
             'userBasics' => $pendingPartner
         ]);
     }
 
-    public function addPartner(Request $request){
+    public function addPartner(Request $request)
+    {
         $this->validate($request, [
-           'user_id' => 'required|exists:users,id',
-            'share' => 'required|number'
+            'user_id' => 'required|exists:users,id',
+            'share' => 'required',
+            'wallet' => 'required|string'
         ]);
         $verify = TeamMember::where('team_id', Auth::id())->count();
 
-        $team =  Team::where('user_id', Auth::id())->first();
+        $team = Team::where('owner_id', Auth::id())->first();
 
-        if($team == null){
+        if ($team == null) {
             $team = new Team();
             $team->owner_id = Auth::id();
-
             $team->save();
-        }else{
-
         }
 
-        if ($verify > 0 && $verify < 5){
-            $uid = $request->user_id;
-
-            $teamMember = new TeamMember();
-
-        }else{
+        if ($verify < 0 || $verify >= 5) {
             return redirect()->back()->withErrors([
-                'team_full' => 'Your team already has maximum number of members'
+                'error' => 'Your team already has maximum number of members'
             ]);
         }
+
+        $shareSum = TeamMember::where('team_id', $team->id)->sum('share');
+        if (($shareSum + $request->get('share')) > 100) {
+            return redirect()->back()->withErrors([
+                'error' => 'Total sum can not be greater than 100. You already have ' . $shareSum . '% allocated already'
+            ]);
+        }
+
+        $teamMember = new TeamMember();
+        $teamMember->user_id = $request->get('user_id');
+        $teamMember->share = $request->get('share');
+        $teamMember->wallet_address = $request->get('address');
+        $teamMember->team_id = $team->id;
+        $teamMember->save();
+
+        return redirect()->back()->with('success', 'Team Member was added successfully');
     }
 }

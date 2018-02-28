@@ -96,3 +96,17 @@ function deleteEpisode(id) {
     }
     return false;
 }
+
+function deletePartner(id){
+    if (confirm('Are you sure you want to delete this Partner')) {
+        $.get('/publisher/partner/' + id + '/delete', function (data) {
+            if (data) {
+                alert('Partner was deleted successfully');
+                window.location.reload();
+            } else {
+                alert('An error occurred while deleting Partner');
+            }
+        });
+    }
+    return false;
+}
