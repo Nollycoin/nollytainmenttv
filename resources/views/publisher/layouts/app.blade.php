@@ -28,7 +28,7 @@
 
             <ul class="nav" style="margin-top: -15px;">
                 <li class="@yield('_dashboard_active')">
-                    <a href="{{ route('_dashboard') }}">
+                    <a href="{{ route('publisher_dashboard') }}">
                         <i class="ti-panel"></i>
                         <p> Dashboard </p>
                     </a>
