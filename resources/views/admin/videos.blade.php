@@ -37,9 +37,9 @@
                                      rgba(0, 0, 0, 0.8)), url('{{
                                       \App\Helpers\Constants::getUploadDirectory() }}/poster_images/{{ $movie->movie_poster_image }}')">
                         </div>
-                        <div class="edit"><a href="edit_video.php?id={{ $movie->id }}"><i class="ti-pencil"></i></a>
+                        <div class="edit"><a href="{{ route('_edit_video', ['id'=> $movie->id ]) }}"><i class="ti-pencil"></i></a>
                         </div>
-                        <div class="delete"><a href="delete_video.php?id={{ $movie->id }}"><i
+                        <div class="delete"><a href="#" onclick="deleteVideo('{{ $movie->id }}')"><i
                                         class="ti-trash"></i></a></div>
                         <div class="title">{{ $movie->movie_name }}</div>
                     </div>

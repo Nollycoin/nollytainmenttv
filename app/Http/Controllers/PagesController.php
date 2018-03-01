@@ -261,7 +261,8 @@ class PagesController extends Controller
     public function myList(){
         $myList = [];
 
-        $list = null;//TODO:: Put a middle ware and uncomment out this line
+        $list = Auth::user()->myList;//TODO:: Put a middle ware and uncomment out this line
+
         //s Auth::user()->myList()->where('profile_id', \session('profile_id', null))->get();
 
         if ($list != null){

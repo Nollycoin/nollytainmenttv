@@ -20,7 +20,7 @@ function deleteUser(id) {
                 alert('User deleted successfully');
                 window.location.reload();
             } else {
-                alert('An error occurred while deleting page');
+                alert('An error occurred while deleting user');
             }
         });
     }
@@ -34,7 +34,7 @@ function deleteCode(id) {
                 alert('Code deleted successfully');
                 window.location.reload();
             } else {
-                alert('An error occurred while deleting page');
+                alert('An error occurred while deleting code');
             }
         });
     }
@@ -48,7 +48,7 @@ function deleteCategory(id) {
                 alert('Category deleted successfully');
                 window.location.reload();
             } else {
-                alert('An error occurred while deleting page');
+                alert('An error occurred while deleting category');
             }
         });
     }
@@ -62,7 +62,35 @@ function deleteActor(id) {
                 alert('Actor deleted successfully');
                 window.location.reload();
             } else {
-                alert('An error occurred while deleting page');
+                alert('An error occurred while deleting actor');
+            }
+        });
+    }
+    return false;
+}
+
+function deleteVideo(id) {
+    if (confirm('Are you sure you want to delete this video?')) {
+        $.get('/admin/video/' + id + '/delete', function (data) {
+            if (data) {
+                alert('Video was deleted successfully');
+                window.location.reload();
+            } else {
+                alert('An error occurred while deleting video');
+            }
+        });
+    }
+    return false;
+}
+
+function deleteEpisode(id) {
+    if (confirm('Are you sure you want to delete this episode?')) {
+        $.get('/admin/episode/' + id + '/delete', function (data) {
+            if (data) {
+                alert('Episode was deleted successfully');
+                window.location.reload();
+            } else {
+                alert('An error occurred while deleting episode');
             }
         });
     }

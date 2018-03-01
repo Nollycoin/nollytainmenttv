@@ -27,7 +27,7 @@
 
                     @foreach($movies as $movie)
                         <div class="item">
-                            <a href="{{ url('/') }}/videos/{{ $movie->id }}">
+                            <a href="{{ route('view_video', ['id' => $movie->id]) }}/videos/{{ $movie->id }}">
                                 <img src="{{
                                 \App\Helpers\Constants::getUploadDirectory() }}/masonry_images/{{ $movie->movie_thumb_image }}">
                                 <div class="play">

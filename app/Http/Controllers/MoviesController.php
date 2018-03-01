@@ -42,19 +42,19 @@ class MoviesController extends Controller
     {
         $list = MyList::where('movie_id', $id)->where('user_id', Auth::id())->first();
 
-        if ($list != null) {
+        if (!empty($list)) {
             $list->delete();
             return '<i class="ti-plus"></i> <span>Add List</span>';
         }else{
             $list = new MyList();
 
-            $list->save([
-               'user_id' => Auth::id(),
-                'movie_id' => $id,
-                'profile_id' => ' '
-            ]);
+            $list->user_id = Auth::id();
+            $list->movie_id = $id;
+            $list->profile_id = 1;
 
-            return '<i class="ti-check"></i>  <span>Added List</span>';
+            $list->save();
+
+            return '<i class="ti-check"></i>  <span>Remove From List</span>';
         }
     }
 }

@@ -24,7 +24,7 @@ class Movie
     public static function createAddToListButton($movie_id, $color = 'white'){
         if (UserSubscription::isUserSubscribed()){
             $url = '#';
-            $onclick = 'addToList('.$movie_id.'); return false;';
+            $onclick = "addToList('$movie_id'); return false;";
         }else{
             $url = url('/').'register';
             $onclick = '';
@@ -37,8 +37,6 @@ class Movie
         } elseif($color == 'green') {
             $class = 'btn-success btn-fill';
         }
-       /* $check = $this->db->query("SELECT * FROM my_list WHERE movie_id='".$movie_id.
-            "' AND user_id='".$this->user_id."' AND profile_id='".$_SESSION['fl_profile']."' LIMIT 1");*/
 
         $check =  MyList::where('movie_id', $movie_id)->where('user_id', Auth::id())->count();
         if($check > 0) {

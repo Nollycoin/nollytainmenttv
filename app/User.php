@@ -35,4 +35,8 @@ class User extends Authenticatable
     public function myList(){
         return $this->hasMany('App\MyList');
     }
+
+    public function team(){
+        return $this->hasOne('App\Team', 'owner_id');
+    }
 }

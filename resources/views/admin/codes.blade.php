@@ -48,6 +48,7 @@
                     </div>
                 </div>
             </form>
+
             @if(!empty($codes))
                 <table class="table table-responsive card">
                     <thead>
