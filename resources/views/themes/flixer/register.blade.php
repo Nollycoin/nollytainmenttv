@@ -8,6 +8,15 @@
     <div class="container animated fadeIn" onclick="hideSearch();">
         <div class="row">
             <div class="col-lg-12">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="col-md-5 centered pricing-page">
                     <div class="panel panel-danger">
                         <div class="panel-heading"><h3 class="text-center">{{  $settings->subscription_name }}</h3>
@@ -55,7 +64,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <form action="{{ route('register') }}" method="post">
+                            <form action="{{ route('register_user') }}" method="post">
                                 <div class="form-group">
                                     <label>
                                         <span>Full Name *</span>

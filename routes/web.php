@@ -23,7 +23,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 
-Route::get('/register_', 'PagesController@register')->name('register_');
+Route::get('/register', 'PagesController@register')->name('register_');
 
 Route::get('/videos/{id}', 'PagesController@video')->name('view_video');
 
@@ -51,10 +51,17 @@ Route::get('/movie/{id}/rating/update/{rating}', 'MoviesController@getMovieRatin
 
 Route::get('/publisher/dashboard', 'PublisherPagesController@index')->name('publisher_dashboard');
 Route::get('/publisher/partners', 'PublisherPagesController@partners')->name('_partners_');
+Route::get('/publisher/partner/{id}/delete', 'PartnersController@deletePartner')->name('_delete_partners_');
 
 Route::get('/publisher/partners/add', 'PublisherPagesController@addPartner')->name('_add_partner');
 Route::get('/publisher/partner/search', 'PartnersController@findNewPartner')->name('_find_new_partner');
+Route::post('/publisher/partner/save', 'PartnersController@addPartner')->name('_save_new_partner');
 
+Route::get('publisher/video/add', 'PublisherPagesController@addVideo')->name('_publisher_add_video');
+Route::post('publisher/video/add', 'VideosController@saveVideo')->name('_publisher_save_video');
+Route::post('publisher/video/{id}/update', 'VideosController@updateVideo')->name('_publisher_update_video');
+Route::get('publisher/video/{id}/delete', 'VideosController@deleteVideo')->name('_publisher_delete_video');
+Route::get('publisher/video/{id}/edit', 'PublisherPagesController@editVideo')->name('_publisher_edit_video');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/movie/{id}/add_to_list', 'MoviesController@addMovieToList')
@@ -142,4 +149,5 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
 });
+
 Auth::routes();
