@@ -57,6 +57,8 @@ Route::post('publisher/video/add', 'VideosController@saveVideo')->name('_publish
 Route::post('publisher/video/{id}/update', 'VideosController@updateVideo')->name('_publisher_update_video');
 Route::get('publisher/video/{id}/delete', 'VideosController@deleteVideo')->name('_publisher_delete_video');
 Route::get('publisher/video/{id}/edit', 'PublisherPagesController@editVideo')->name('_publisher_edit_video');
+Route::get('/publisher/videos', 'PublisherPagesController@videos')->name('_publisher_videos_');
+Route::get('/video/{id}/watching', 'WatchLogController@logWatch')->name('_log_watch_');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/movie/{id}/add_to_list', 'MoviesController@addMovieToList')

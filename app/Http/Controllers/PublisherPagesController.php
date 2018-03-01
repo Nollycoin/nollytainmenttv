@@ -6,6 +6,7 @@ use App\Actor;
 use App\ActorRelation;
 use App\Genre;
 use App\Movie;
+use App\Setting;
 use App\TeamMember;
 use App\User;
 use Illuminate\Http\Request;
@@ -41,6 +42,12 @@ class PublisherPagesController extends Controller
         return view('publisher.add_partner');
     }
 
+    public function videos(Request $request)
+    {
+        $videos = Movie::paginate(20); /* where('id', Auth::id())-> */
+        return view('publisher.videos', ['movies' => $videos]);
+    }
+
     public function addVideo()
     {
         $genres = Genre::all();
@@ -48,7 +55,7 @@ class PublisherPagesController extends Controller
         $settings = Setting::where('id', 1)->first();
 
 
-        return view('admin.add_video', [
+        return view('publisher.add_video', [
             'genres' => $genres,
             'actors' => $actors,
             'settings' => $settings
@@ -68,7 +75,7 @@ class PublisherPagesController extends Controller
                 $actor->is_in_cast = 0;
         }
 
-        return view('admin.edit_video', [
+        return view('publisher.edit_video', [
             'movie' => $video,
             'genres' => $genres,
             'settings' => Setting::find(1),
