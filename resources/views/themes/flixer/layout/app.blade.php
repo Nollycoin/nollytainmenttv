@@ -201,7 +201,7 @@ TODO:: Please try and put this line back in the code when everything works
                             <button type="submit" name="login" class="btn btn-danger btn-fill pull-right">
                                 Sign In
                             </button>
-                            <a href="{{ route('register_') }}" class="btn btn-default btn-fill pull-right"
+                            <a href="{{ route('register') }}" class="btn btn-default btn-fill pull-right"
                                style="margin-right:5px;">
                                 Create Account</a>
                         </form>
