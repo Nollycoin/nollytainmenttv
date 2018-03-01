@@ -32,6 +32,7 @@ Route::group(['middleware' => ['theme']], function () {
     Route::get('/page/{id}', 'PagesController@page')->name('page');
 
     Route::get('/search', 'PagesController@search')->name('search');
+    Route::get('/subscribe', 'PagesController@subscribe')->name('search');
 
 
 

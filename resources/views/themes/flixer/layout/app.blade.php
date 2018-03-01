@@ -164,11 +164,10 @@ NProgress.start();
 <script src="{{ asset(session('theme_resource_path').'assets/js/app.js') }}"></script>
 <script src="{{ asset(session('theme_resource_path').'assets/js/theme.js') }}"></script>
 
-{{--
-TODO:: Please try and put this line back in the code when everything works
+{{--TODO:: Please try and put this line back in the code when everything works--}}
 <?/*=$page['js']*/?>
 
---}}
+
 
 </body>
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

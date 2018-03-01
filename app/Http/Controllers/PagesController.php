@@ -319,4 +319,12 @@ class PagesController extends Controller
             'query' => $query
         ]));
     }
+
+
+    public function subscribe(){
+
+        return view('themes.flixer.subscribe', array_merge($this->dataForPages), [
+            'address' => 'jkdghjkdhgsjhgsjdhsgdfhksgdjfh'
+        ]);
+    }
 }
