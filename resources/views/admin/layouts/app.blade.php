@@ -22,7 +22,7 @@
         <div class="sidebar-wrapper" style="overflow-x:hidden; width: auto">
             <div class="logo" style="margin-top: -20px;">
                 <a href="#" class="simple-text">
-                    <img src="{{ asset('admin/assets/images/logo.png') }}">
+                    <img class="sidebar-logo" src="{{ asset('themes/flixer/assets/images/logo.png') }}">
                 </a>
             </div>
 

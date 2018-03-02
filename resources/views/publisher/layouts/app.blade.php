@@ -41,8 +41,8 @@
                 </li>
                 <li class="@yield('_videos_active')">
                     <a href="{{ route('_publisher_videos_') }}">
-                        <i class="ti-user"></i>
-                        <p>Partners</p>
+                        <i class="ti-view-list"></i>
+                        <p>Videos</p>
                     </a>
                 </li>
             </ul>

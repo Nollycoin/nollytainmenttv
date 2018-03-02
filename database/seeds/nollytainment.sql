@@ -84,10 +84,10 @@ INSERT INTO `genres` (`id`, `genre_name`, `is_kid_friendly`) VALUES
 (12, 'Horror', 0);
 
 
-INSERT INTO `movies` (`id`, `movie_name`, `movie_plot`, `movie_year`, `movie_genres`, `movie_poster_image`, `movie_thumb_image`, `movie_plays`, `movie_source`, `is_embed`, `is_featured`, `is_series`, `last_season`, `is_kid_friendly`, `free_to_watch`) VALUES
-(39, 'Daredevil', 'Matt Murdock, with his other senses superhumanly enhanced, fights crime as a blind lawyer by day, and vigilante by night.', '2015', '11', 'beed6ac962ba26570fab8c8042ed7503daredevil.jpg', '0427bd3dc8b46ddc85feb05d6aeb3efamasonry2.jpg', 0, 'https://www.youtube.com/watch?v=m5_A0Wx0jU4&t=1s', 0, 1, 1, 0, 0, 0),
-(43, 'Back To The Future', 'Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.', '', '11', '6733a8b78bd52d3377adacd001d4cc43back-to-the-future-wallpaper-12.jpg', 'abf71042c600b1124480639355209ad2masonry25.jpg', 0, 'https://www.youtube.com/watch?v=qvsgGtivCgs', 0, 0, 0, 0, 0, 1),
-(44, 'Cabin In The Woods', 'Five friends go for a break at a remote cabin, where they get more than they bargained for, discovering the truth behind the cabin in the woods.', '', '12', '599553ec5d2626a4f9465a32da89d303thecabinwoods.jpg', '506bbbc5920189e551d0c78d5a939b87masonry29.jpg', 0, 'https://www.youtube.com/watch?v=u1Ea86glnRU', 0, 0, 0, 0, 0, 1);
+INSERT INTO `movies` (`id`, `user_id`, `movie_name`, `movie_plot`, `movie_year`, `movie_genres`, `movie_poster_image`, `movie_thumb_image`, `movie_plays`, `movie_source`, `is_embed`, `is_featured`, `is_series`, `last_season`, `is_kid_friendly`, `free_to_watch`) VALUES
+(39, 'Daredevil', 22, 'Matt Murdock, with his other senses superhumanly enhanced, fights crime as a blind lawyer by day, and vigilante by night.', '2015', '11', 'beed6ac962ba26570fab8c8042ed7503daredevil.jpg', '0427bd3dc8b46ddc85feb05d6aeb3efamasonry2.jpg', 0, 'https://www.youtube.com/watch?v=m5_A0Wx0jU4&t=1s', 0, 1, 1, 0, 0, 0),
+(43, 'Back To The Future', 22, 'Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.', '', '11', '6733a8b78bd52d3377adacd001d4cc43back-to-the-future-wallpaper-12.jpg', 'abf71042c600b1124480639355209ad2masonry25.jpg', 0, 'https://www.youtube.com/watch?v=qvsgGtivCgs', 0, 0, 0, 0, 0, 1),
+(44, 'Cabin In The Woods', 22, 'Five friends go for a break at a remote cabin, where they get more than they bargained for, discovering the truth behind the cabin in the woods.', '', '12', '599553ec5d2626a4f9465a32da89d303thecabinwoods.jpg', '506bbbc5920189e551d0c78d5a939b87masonry29.jpg', 0, 'https://www.youtube.com/watch?v=u1Ea86glnRU', 0, 0, 0, 0, 0, 1);
 
 
 INSERT INTO `pages` (`id`, `page_name`, `page_content`) VALUES
@@ -131,7 +131,7 @@ INSERT INTO `sessions` (`id`, `session_id`, `user_ip`, `user_id`, `profile_id`, 
 
 
 INSERT INTO `settings` (`id`, `website_name`, `website_title`, `website_description`, `website_keywords`, `theme`, `paypal_email`, `subscription_price`, `subscription_currency`, `subscription_name`, `disquis_short_name`, `footer_on_content_optimized_pages`, `redirect_after_login`, `default_language`, `facebook_url`, `twitter_url`, `show_actors`, `supports_starring`, `kid_profiles`, `show_profiles`, `supports_profiles`, `jwplayer_key`) VALUES
-(1, 'Muviko', 'Muviko - Movie & Video CMS', 'One of the best and most powerful content management system for movie & video content', 'watch movies online, netflix clone, muviko, educational videos', 'flixer', 'jana_kol@abv.bg', 5, 'USD', 'Premium', 'muviko', 0, 'select_profile', 'english', 'https://www.facebook.com/envato', 'https://twitter.com/envato', 1, 1, 1, 1, 1, 'None');
+(1, 'Nollytainment', 'Nollytv - ', 'Nollytv', 'watch movies, online', 'flixer', 'jana_kol@abv.bg', 5, 'USD', 'Premium', 'muviko', 0, 'select_profile', 'english', 'https://www.facebook.com/envato', 'https://twitter.com/envato', 1, 1, 1, 1, 1, 'None');
 
 
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `phone`, `phone_country_code`, `last_profile`, `last_profile_name`, `is_admin`, `is_subscriber`, `subscription_expiration`) VALUES

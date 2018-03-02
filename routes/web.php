@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/home');
 });
+Route::get('/publisher/create', 'PagesController@createPublisher')->name('newPublisher');
+
+Route::post('/subscriber/create', 'UsersController@subscriberRegister')->name('createSubscriber');
+
 Route::get('/home', 'PagesController@index')->name('home');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -37,11 +41,7 @@ Route::get('/page/{id}', 'PagesController@page')->name('page');
 
 Route::get('/search', 'PagesController@search')->name('search');
 
-<<<<<<< HEAD
-    Route::get('/search', 'PagesController@search')->name('search');
-    Route::get('/subscribe', 'PagesController@subscribe')->name('search');
-=======
->>>>>>> 79c91309877546f8a043b4ce67f4fb8cf39cf1ea
+
 
 Route::get('/movie/{id}/rating', 'MoviesController@getMovieRating')
     ->name('get_movie_rating');
@@ -62,12 +62,15 @@ Route::post('publisher/video/add', 'VideosController@saveVideo')->name('_publish
 Route::post('publisher/video/{id}/update', 'VideosController@updateVideo')->name('_publisher_update_video');
 Route::get('publisher/video/{id}/delete', 'VideosController@deleteVideo')->name('_publisher_delete_video');
 Route::get('publisher/video/{id}/edit', 'PublisherPagesController@editVideo')->name('_publisher_edit_video');
+Route::get('/publisher/videos', 'PublisherPagesController@videos')->name('_publisher_videos_');
+Route::get('/video/{id}/watching', 'WatchLogController@logWatch')->name('_log_watch_');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/movie/{id}/add_to_list', 'MoviesController@addMovieToList')
         ->name('add_movie_to_list');
 
-    /*todo:: guide the routes below by auth*/
+    Route::get('/subscribe', 'SubscriptionController@index')->name('subscribe');
+
     Route::get('/account/activity', 'PagesController@accountActivity')->name('account_activity');
 
     Route::get('/email/change', 'PagesController@changeEmail')->name('change_email');
@@ -110,6 +113,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('admin/user/add', 'AdminPagesController@addUser')->name('_add_user');
         Route::get('admin/user/{id}/edit', 'AdminPagesController@editUser')->name('_edit_user');
         Route::post('admin/user/add', 'UsersController@saveUser')->name('_save_user');
+
         Route::post('admin/user/delete', 'UsersController@deleteUser')->name('_delete_user');
         Route::post('admin/user/{id}/update', 'UsersController@updateUser')->name('_update_user');
 

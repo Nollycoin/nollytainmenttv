@@ -4,12 +4,81 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
+
+    private function generateAddress(){
+
+        $url = config('app.generateAddressURL');
+        $client = new Client();
+        $res = $client->get($url);
+
+        return $res->getBody();
+
+    }
+
+    public function subscriberRegister(Request $request)
+    {
+
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'string',
+            'password' => 'required|min:6'
+        ]);
+
+        $is_admin = 0;
+        $is_subscriber = 1;
+        $subscription_expiration = strtotime('+31 days', time());
+
+
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->phone_country_code = '234';
+        $user->phone = (isset($request->user_phone) ? $request->user_phone : '');
+        $user->password = bcrypt($request->user_password);
+        $user->is_admin = $is_admin;
+        $user->is_subscriber = $is_subscriber;
+        //        move this to subscribe trait
+        //        $user->subscription_expiration = $subscription_expiration;
+
+
+
+        $eth = json_decode($this->generateAddress());
+
+
+        $ethAddress = $eth->address;
+        $ethKey = bcrypt($eth->privateKey);
+
+        $user->wallet_address = $ethAddress;
+        $user->wallet_key = $ethKey;
+
+
+        $user->save();
+
+        $profile = new Profile();
+
+        $profile->user_id = $user->id;
+        $profile->profile_name = explode(' ', $request->user_name)[0];
+        $profile->profile_avatar = rand(0, 9);
+        $profile->profile_language = 'english';
+        $profile->is_kid = 0;
+
+        $profile->save();
+
+        $user->update([
+            'last_profile' => $profile->id
+        ]);
+
+        return redirect(route('subscribe'));
+    }
     public function changeEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [

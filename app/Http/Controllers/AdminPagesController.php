@@ -13,6 +13,7 @@ use App\Season;
 use App\Setting;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPagesController extends Controller
 {
@@ -59,8 +60,7 @@ class AdminPagesController extends Controller
 
     public function videos(Request $request)
     {
-        $videos = Movie::paginate(20);
-
+        $videos = Movie::where('id', Auth::id())->paginate(20);
 
         return view('admin.videos', ['movies' => $videos]);
     }

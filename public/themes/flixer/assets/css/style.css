@@ -1,6 +1,6 @@
 /* GLOBAL */
 html {
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 html,body {
   position: relative;
@@ -8,15 +8,14 @@ html,body {
 }
 body {
   color: #FFF;
-  padding-bottom: 350px;
 }
 .no-footer {
   padding-bottom: 0px;
 }
 .content {
- color: #FFF;
- overflow: hidden;
- height: 100%;
+  color: #FFF;
+  overflow: hidden;
+  height: 100%;
 }
 .navbar {
   position: relative;
@@ -26,7 +25,7 @@ body {
   padding-top: 10px !important;
   position: absolute;
   left: 50%;
-  margin-left: -50px !important; 
+  margin-left: -50px !important;
   display: block;
 }
 .col-centered {
@@ -134,8 +133,8 @@ body {
   left: 7px;
   display: none;
 }
-.home-section h1:hover i { 
-  display: inline; 
+.home-section h1:hover i {
+  display: inline;
 }
 .home-section .item {
   display: inline-block;
@@ -167,20 +166,20 @@ body {
   left: 42%;
   display: none;
   color: #FFF;
-  background-color: rgba(26,26,26,0.9);
+  background-color: #FF9800;
   border-radius: 50%;
   padding: 10px;
   padding-left: 12px;
   padding-right: 12px;
 }
 .home-section .item .play i {
- font-size: 2.3em;
- color: #FFF;
- text-align: center;
- position: relative;
- top: 1.3px;
- left: 4px;
- color: rgba(255,255,255,1);
+  font-size: 2.3em;
+  color: #FFF;
+  text-align: center;
+  position: relative;
+  top: 1.3px;
+  left: 4px;
+  color: rgba(255,255,255,1);
 }
 .home-section .item:hover img {
   filter: brightness(50%);
@@ -293,15 +292,15 @@ body {
   border-color: #232323;
 }
 .sign-up-container table td {
- text-align:left;
- padding: 0px;
- border-color: #232323;
- border-top-color: #232323 !important;
- text-align: center;
+  text-align:left;
+  padding: 0px;
+  border-color: #232323;
+  border-top-color: #232323 !important;
+  text-align: center;
 }
 .sign-up-container table td.active {
- color: #DE1212;
- background: transparent !important;
+  color: #DE1212;
+  background: transparent !important;
 }
 .sign-up-container .feature {
   max-width: 200px;
@@ -612,10 +611,10 @@ body {
   font-weight: 600;
 }
 .movie .details-container .episode img {
- margin-bottom: 10px;
- filter: brightness(60%);
- height: 180px;
- width: 340px;
+  margin-bottom: 10px;
+  filter: brightness(60%);
+  height: 180px;
+  width: 340px;
 }
 .movie .details-container .episode .play {
   font-weight: 400;
@@ -631,13 +630,13 @@ body {
   padding-right: 14px;
 }
 .movie .details-container .episode .play i {
- font-size: 2.1em;
- color: #FFF;
- text-align: center;
- position: relative;
- top: 1.3px;
- left: 3px;
- color: rgba(255,255,255,0.8);
+  font-size: 2.1em;
+  color: #FFF;
+  text-align: center;
+  position: relative;
+  top: 1.3px;
+  left: 3px;
+  color: rgba(255,255,255,0.8);
 }
 .movie .details-container .episode .description {
   width: 310px;
@@ -811,13 +810,13 @@ body {
   padding-right: 12px;
 }
 .my-list .item .play i {
- font-size: 2.3em;
- color: #FFF;
- text-align: center;
- position: relative;
- top: 1.3px;
- left: 4px;
- color: rgba(255,255,255,1);
+  font-size: 2.3em;
+  color: #FFF;
+  text-align: center;
+  position: relative;
+  top: 1.3px;
+  left: 4px;
+  color: rgba(255,255,255,1);
 }
 .my-list .item:hover img {
   filter: brightness(40%);
@@ -855,11 +854,11 @@ body {
   height: 35px;
 }
 .navbar-form .search-input .input-group-addon {
- background-color: rgba(26,26,26,0.6) !important;
- border: 1px solid rgba(255,255,255,1) !important;
- border-right: 0px !important;
- color: #FFF;
- border-radius: 0px;
+  background-color: rgba(26,26,26,0.6) !important;
+  border: 1px solid rgba(255,255,255,1) !important;
+  border-right: 0px !important;
+  color: #FFF;
+  border-radius: 0px;
 }
 /* SETTINGS PAGE */
 .settings-container {
@@ -900,11 +899,11 @@ body {
   margin-bottom: 10px !important;
 }
 .settings-container .avatar .name {
- display: inline;
- float: left;
- line-height: 40px;
- margin-left: 10px;
- font-size: 1.1em;
+  display: inline;
+  float: left;
+  line-height: 40px;
+  margin-left: 10px;
+  font-size: 1.1em;
 }
 .settings-container .redeem-btn {
   padding-bottom: 7px !important;
@@ -946,6 +945,8 @@ body {
 .pricing-page {
   padding-top: 100px;
 }
+
+.pricing-page {color: #141414;}
 .pricing-page .panel {
   padding: 0px;
 }
@@ -1022,7 +1023,7 @@ body {
 }
 /* CUSTOM PAGE */
 .custom-page {
- padding-bottom: 7%;
+  padding-bottom: 7%;
 }
 .custom-page h1 {
   font-size: 2.5em;

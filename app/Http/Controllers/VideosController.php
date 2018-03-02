@@ -11,6 +11,7 @@ use App\Rating;
 use App\Season;
 use App\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VideosController extends Controller
 {
@@ -60,6 +61,7 @@ class VideosController extends Controller
 
         $movie->movie_poster_image = $videoPosterImageName;
         $movie->movie_thumb_image = $videoThumbImageName;
+        $movie->user_id = Auth::id();
 
         $movie->save();
 
