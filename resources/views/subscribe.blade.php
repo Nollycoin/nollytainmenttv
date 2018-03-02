@@ -8,15 +8,7 @@
     <div class="container animated fadeIn" onclick="hideSearch();">
         <div class="row">
             <div class="col-lg-12">
-                @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+
                 <div class="col-md-5 col-md-offset-2 pricing-page">
                     <div class="panel panel-danger">
                         <div class="panel-heading"><h3 class="text-center"> Premium</h3>
@@ -24,25 +16,17 @@
                         <div class="panel-body text-center">
                             <p class="lead" style="font-size:40px">
                                 <strong>
-                                    $26
+                                    26nolly
                                     <span>/Month</span>
                                 </strong>
                             </p>
+                            <p class="badge badge-pill badge-default">jsdkjs-dsdskd-dsdsd-dsds-dsds
+                                <button class="btn btn-xs btn-primary">Copy Address</button></p>
+                            <p>Fund your nollytv platform wallet with the equivalent amount of nollycoins and click button bellow to subscribe</p>
                         </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Unlimited Movies & Series
-                            </li>
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Share your account with up
-                                to 4
-                                people
-                            </li>
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Create a playlist with your
-                                favorite movies
-                            </li>
-                        </ul>
+
                         <div class="panel-footer">
-                            <a class="btn btn-danger btn-block btn-fill" data-toggle="modal"
-                               data-target="#pay">Subscribe</a>
+                            <a class="btn btn-danger btn-block btn-fill">Subscribe Now</a>
                         </div>
                     </div>
                 </div>
@@ -74,7 +58,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ route('createSubscriber') }}">
+                            <form method="POST" action="{{ route('register') }}">
                                 @csrf
 
                                 <div class="form-group row">

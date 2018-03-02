@@ -27,6 +27,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'generateAddressURL' => 'http://localhost:3000/generate-address',
 
     /*
     |--------------------------------------------------------------------------
