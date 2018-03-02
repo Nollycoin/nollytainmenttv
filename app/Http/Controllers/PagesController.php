@@ -292,6 +292,8 @@ class PagesController extends Controller
         return view('themes.flixer.phone', array_merge($this->dataForPages));
     }
 
+
+
     public function settings(){
 
         $user = Auth::user();
@@ -319,5 +321,11 @@ class PagesController extends Controller
             'movies' => $movies,
             'query' => $query
         ]));
+    }
+
+    //    show view for new publisher registration
+    public function createPublisher()
+    {
+        return view('auth.new-publisher');
     }
 }

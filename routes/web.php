@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/home');
 });
+Route::get('/publisher/create', 'PagesController@createPublisher')->name('newPublisher');
+
 Route::get('/home', 'PagesController@index')->name('home');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -36,6 +38,8 @@ Route::get('/series', 'PagesController@series')->name('series');
 Route::get('/page/{id}', 'PagesController@page')->name('page');
 
 Route::get('/search', 'PagesController@search')->name('search');
+
+
 
 
 Route::get('/movie/{id}/rating', 'MoviesController@getMovieRating')

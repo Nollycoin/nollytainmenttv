@@ -42,7 +42,7 @@
         var user_id = '{{ \Illuminate\Support\Facades\Auth::id() }}';
         jwplayer.key = '9383hjehjhh3hhudhbjbsxiboie88ehbiwue83032';
         {{-- <=$muviko->settings->jwplayer_key> --}}
-NProgress.start();
+        NProgress.start();
     </script>
 </head>
 <body class="">
@@ -53,90 +53,90 @@ NProgress.start();
 @if(!session()->has('footer'))
 
 @endif
-<footer class="footer footer-black footer-big" style="position: static;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-md-offset-1 col-sm-9 col-xs-12">
-                <div class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="links">
-                            <ul class="stacked-links">
-                                <li><big>Categories</big></li>
-                                @foreach($genres as $genre)
-                                    <li>
-                                        <a href="{{ route('category', ['id' => $genre->id ]) }}">
-                                            {{ $genre->genre_name }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="links">
-                            <ul class="stacked-links">
-                                <li><big>Pages</big></li>
+{{--<footer class="footer footer-black footer-big" style="position: static;">--}}
+    {{--<div class="container">--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-md-9 col-md-offset-1 col-sm-9 col-xs-12">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-md-3 col-sm-3 col-xs-6">--}}
+                        {{--<div class="links">--}}
+                            {{--<ul class="stacked-links">--}}
+                                {{--<li><big>Categories</big></li>--}}
+                                {{--@foreach($genres as $genre)--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{ route('category', ['id' => $genre->id ]) }}">--}}
+                                            {{--{{ $genre->genre_name }}--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                {{--@endforeach--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-3 col-sm-3 col-xs-6">--}}
+                        {{--<div class="links">--}}
+                            {{--<ul class="stacked-links">--}}
+                                {{--<li><big>Pages</big></li>--}}
 
-                                @foreach($pages as $page)
-                                    <li>
-                                        <a href="{{ route('page', ['id' => $page->id ])  }}">
-                                            {{ $page->page_name }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="links">
-                            <ul class="stacked-links">
-                                <li><big>Social</big></li>
-                                @if(!empty($settings->facebook_url))
-                                    <li>
-                                        <a href="{{ $settings->facebook_url }}" target="_blank">
-                                            Facebook
-                                        </a>
-                                    </li>
-                                @endif
-                                @if(!empty($settings->twitter_url))
-                                    <li>
-                                        <a href="{{$settings->twitter_url}}" target="_blank">
-                                            Twitter
-                                        </a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-6">
-                        <div class="links">
-                            <ul class="stacked-links">
-                                <li>
-                                    <h4>{{ $statistics->users }}<br>
-                                        <small>users</small>
-                                    </h4>
-                                </li>
-                                <li>
-                                    <h4>{{ $statistics->videos }}<br>
-                                        <small>videos</small>
-                                    </h4>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="copyright">
-                    <div class="pull-left">
-                        © {{ date('Y').' '. $settings->website_name}}
-                    </div>
-                    <div class="links pull-right">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+                                {{--@foreach($pages as $page)--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{ route('page', ['id' => $page->id ])  }}">--}}
+                                            {{--{{ $page->page_name }}--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                {{--@endforeach--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-3 col-sm-3 col-xs-6">--}}
+                        {{--<div class="links">--}}
+                            {{--<ul class="stacked-links">--}}
+                                {{--<li><big>Social</big></li>--}}
+                                {{--@if(!empty($settings->facebook_url))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{ $settings->facebook_url }}" target="_blank">--}}
+                                            {{--Facebook--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                                {{--@if(!empty($settings->twitter_url))--}}
+                                    {{--<li>--}}
+                                        {{--<a href="{{$settings->twitter_url}}" target="_blank">--}}
+                                            {{--Twitter--}}
+                                        {{--</a>--}}
+                                    {{--</li>--}}
+                                {{--@endif--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-3 col-sm-3 col-xs-6">--}}
+                        {{--<div class="links">--}}
+                            {{--<ul class="stacked-links">--}}
+                                {{--<li>--}}
+                                    {{--<h4>{{ $statistics->users }}<br>--}}
+                                        {{--<small>users</small>--}}
+                                    {{--</h4>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<h4>{{ $statistics->videos }}<br>--}}
+                                        {{--<small>videos</small>--}}
+                                    {{--</h4>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<hr>--}}
+                {{--<div class="copyright">--}}
+                    {{--<div class="pull-left">--}}
+                        {{--© {{ date('Y').' '. $settings->website_name}}--}}
+                    {{--</div>--}}
+                    {{--<div class="links pull-right">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</footer>--}}
 <!--  Plugins -->
 <script src="{{ asset(session('theme_resource_path').'assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>
 <script src="{{ asset(session('theme_resource_path').'assets/js/jquery-ui-1.10.4.custom.min.js') }}" type="text/javascript"></script>

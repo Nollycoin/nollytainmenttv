@@ -17,63 +17,12 @@
                         </ul>
                     </div>
                 @endif
-                <div class="col-md-5 col-md-offset-2 pricing-page">
+
+                    <div class="col-md-6 col-md-offset-2 pricing-page">
                     <div class="panel panel-danger">
-                        <div class="panel-heading"><h3 class="text-center"> Premium</h3>
+                        <div class="panel-heading"><h3 class="text-center"> Become a Publisher</h3>
                         </div>
                         <div class="panel-body text-center">
-                            <p class="lead" style="font-size:40px">
-                                <strong>
-                                    $26
-                                    <span>/Month</span>
-                                </strong>
-                            </p>
-                        </div>
-                        <ul class="list-group list-group-flush text-center">
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Unlimited Movies & Series
-                            </li>
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Share your account with up
-                                to 4
-                                people
-                            </li>
-                            <li class="list-group-item"><i class="icon-ok text-danger"></i> Create a playlist with your
-                                favorite movies
-                            </li>
-                        </ul>
-                        <div class="panel-footer">
-                            <a class="btn btn-danger btn-block btn-fill" data-toggle="modal"
-                               data-target="#pay">Subscribe</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4" style="padding-top: 100px">
-                    <h3>
-                        Signup as a Publisher
-
-                    </h3>
-                    <p> Signup as a publisher to publish movies on the nollytainment platform.</p>
-                    <a class="btn btn-primary btn-large" href="{{ route('newPublisher') }}">Become a Publisher</a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="pay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content payment-modal">
-                <div class="modal-body">
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                Sign Up
-                                <div class="pull-right">
-                                    <span>Secure Form</span>
-                                    <img src="{{ asset('/themes/flixer/assets/images/padlock.png') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
 
@@ -106,6 +55,17 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="email" class="col-md-4 col-form-label text-md-right">Role</label>
+
+                                    <div class="col-md-6">
+                                        <input id="role" type="text" class="form-control" name="role" value="Publisher" disabled="" required>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                     <div class="col-md-6">
@@ -135,6 +95,43 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-md-4" style="padding-top: 100px">
+                        <h3> Become a pulisher to <br></h3>
+                        <ul>
+                            <li>Publish Movies on Nollytv </li>
+                            <li> Setup Distribution contracts for upto 5 partners to receive payments for movies. </li>
+                            <li>
+                                Keep track of all payments made to partners in a movie project.
+                            </li>
+                        </ul>
+                        </p>
+                    </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="pay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content payment-modal">
+                <div class="modal-body">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Sign Up
+                                <div class="pull-right">
+                                    <span>Secure Form</span>
+                                    <img src="{{ asset('/themes/flixer/assets/images/padlock.png') }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
                         </div>
                     </div>
                 </div>
