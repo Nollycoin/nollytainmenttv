@@ -39,6 +39,12 @@
                         <p>Users</p>
                     </a>
                 </li>
+                <li class="@yield('_publishers_active')">
+                    <a href="{{ route('_publishers') }}">
+                        <i class="ti-user"></i>
+                        <p>Publishers</p>
+                    </a>
+                </li>
                 <li class="@yield('_categories_active')">
                     <a href="{{ route('_categories') }}">
                         <i class="ti-view-list"></i>

@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth']], function () {
         /*admin routes*/
         Route::get('/admin/dashboard', 'AdminPagesController@index')->name('_dashboard');
         Route::get('/admin/users', 'AdminPagesController@users')->name('_users');
+        Route::get('/admin/publishers', 'AdminPagesController@publishers')->name('_publishers');
+
         Route::get('/admin/categories', 'AdminPagesController@categories')->name('_categories');
         Route::get('/admin/videos', 'AdminPagesController@videos')->name('_videos');
         Route::get('/admin/episodes', 'AdminPagesController@episodes')->name('_episodes');
