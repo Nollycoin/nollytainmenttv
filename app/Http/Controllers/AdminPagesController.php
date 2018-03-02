@@ -212,4 +212,10 @@ class AdminPagesController extends Controller
     {
         return view('admin.add_page');
     }
+
+    public function publishers(){
+        $publishers = User::where('is_publisher', 1)->paginate(20);
+
+        return view('admin.publishers', ['users' => $publishers]);
+    }
 }

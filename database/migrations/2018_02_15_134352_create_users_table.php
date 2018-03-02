@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('last_profile_name', 50)->nullable();
             $table->integer('is_admin')->nullable();
             $table->integer('is_subscriber')->nullable();
+            $table->integer('is_publisher')->nullable();
             $table->integer('subscription_expiration')->nullable();
             $table->rememberToken();
             $table->timestamps();

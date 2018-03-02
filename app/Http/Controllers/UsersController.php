@@ -151,7 +151,7 @@ class UsersController extends Controller
             if ($rank === 'subscriber') {
                 $user->is_admin = 0;
                 $user->is_subscriber = 1;
-                $user->subscription_expiration = strtotime('+31 days', time());
+                //$user->subscription_expiration = strtotime('+31 days', time());
             } else if ($rank === 1) {
                 $user->is_subscriber = 1;
                 $user->is_admin = 1;
