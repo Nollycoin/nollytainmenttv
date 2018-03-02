@@ -18,6 +18,7 @@ Route::get('/', function () {
     return redirect('/home');
 });
 Route::get('/publisher/create', 'PagesController@createPublisher')->name('newPublisher');
+Route::post('/publisher/create', 'UsersController@createPublisher')->name('save_publisher');
 
 Route::get('/home', 'PagesController@index')->name('home');
 
