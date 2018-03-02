@@ -62,7 +62,6 @@ class AdminPagesController extends Controller
     {
         $videos = Movie::where('id', Auth::id())->paginate(20);
 
-
         return view('admin.videos', ['movies' => $videos]);
     }
 
