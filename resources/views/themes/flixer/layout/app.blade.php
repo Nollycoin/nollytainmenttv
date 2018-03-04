@@ -35,7 +35,7 @@
     <link href="{{ asset('themes/flixer/assets/css/themify-icons.css') }}" rel="stylesheet" type="text/css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+    <link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
     <script>
         var base = '{{ url('/') }}';
         var uploads_path = '{{ \App\Helpers\Constants::getUploadDirectory() }}';
@@ -44,6 +44,8 @@
         {{-- <=$muviko->settings->jwplayer_key> --}}
         NProgress.start();
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body class="">
 
@@ -79,7 +81,7 @@
 
 @foreach($pages as $page)
 <li>
-<a href="{{ route('page', ['id' => $page->id ]) ) }}">
+<a href="{{ route('page', ['id' => $page->id ]) }}">
 {{ $page->page_name }}
 </a>
 </li>

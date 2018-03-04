@@ -2,6 +2,11 @@
 
 @section('title', $movie->movie_name)
 
+@section('js')
+    {{--<link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">--}}
+    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+@endsection
+
 @section('body')
     <div class="movie-page-image" style="
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
@@ -20,9 +25,19 @@
 
         <div class="player-single-outter container" onclick="hideSearch()">
             @if(\App\Helpers\Movie::canWatch($movie->free_to_watch))
-                <div class="player-single-wrapper">
-                    <div id="player"></div>
-                </div>
+                <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+                       poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4.mp4" type='video/mp4'>
+                    <source src="MY_VIDEO.webm" type='video/webm'>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                </video>
+
+
+
+                {{--inetgrate a different player here--}}
             @else
                 <div class="subscribe-alert text-center">
                     <h2>Available only to Subscribers</h2>
