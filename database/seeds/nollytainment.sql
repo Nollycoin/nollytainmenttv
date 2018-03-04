@@ -131,7 +131,7 @@ INSERT INTO `sessions` (`id`, `session_id`, `user_ip`, `user_id`, `profile_id`, 
 
 
 INSERT INTO `settings` (`id`, `website_name`, `website_title`, `website_description`, `website_keywords`, `theme`, `paypal_email`, `subscription_price`, `subscription_currency`, `subscription_name`, `disquis_short_name`, `footer_on_content_optimized_pages`, `redirect_after_login`, `default_language`, `facebook_url`, `twitter_url`, `show_actors`, `supports_starring`, `kid_profiles`, `show_profiles`, `supports_profiles`, `jwplayer_key`) VALUES
-(1, 'Muviko', 'Muviko - Movie & Video CMS', 'One of the best and most powerful content management system for movie & video content', 'watch movies online, netflix clone, muviko, educational videos', 'flixer', 'jana_kol@abv.bg', 5, 'USD', 'Premium', 'muviko', 0, 'select_profile', 'english', 'https://www.facebook.com/envato', 'https://twitter.com/envato', 1, 1, 1, 1, 1, 'None');
+(1, 'Nollytainment', 'Nollytv - ', 'Nollytv', 'watch movies, online', 'flixer', 'jana_kol@abv.bg', 5, 'USD', 'Premium', 'muviko', 0, 'select_profile', 'english', 'https://www.facebook.com/envato', 'https://twitter.com/envato', 1, 1, 1, 1, 1, 'None');
 
 
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `phone`, `phone_country_code`, `last_profile`, `last_profile_name`, `is_admin`, `is_subscriber`, `subscription_expiration`) VALUES

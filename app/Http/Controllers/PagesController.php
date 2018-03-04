@@ -41,10 +41,10 @@ class PagesController extends Controller
         $this->dataForPages['settings'] = $settings;
         $this->dataForPages['statistics'] = $statistics;
 
-        LaravelSession::put([
-            'theme_resource_path' => ($settings->theme == 'flixer') ? 'themes/flixer/' : 'themes/vixen/',
-            'theme_views_path' => ($settings->theme == 'flixer') ? 'themes.flixer.' : 'themes.vixen.'
-        ]);
+//        LaravelSession::put([
+//            'theme_resource_path' => ($settings->theme == 'flixer') ? 'themes/flixer/' : 'themes/vixen/',
+//            'theme_views_path' => ($settings->theme == 'flixer') ? 'themes.flixer.' : 'themes.vixen.'
+//        ]);
     }
 
     public function index()

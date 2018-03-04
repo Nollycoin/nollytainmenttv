@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::get('/publisher/create', 'PagesController@createPublisher')->name('newPublisher');
 Route::post('/publisher/create', 'UsersController@createPublisher')->name('save_publisher');
 
+Route::post('/subscriber/create', 'UsersController@subscriberRegister')->name('createSubscriber');
+
 Route::get('/home', 'PagesController@index')->name('home');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -69,7 +71,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/movie/{id}/add_to_list', 'MoviesController@addMovieToList')
         ->name('add_movie_to_list');
 
-    /*todo:: guide the routes below by auth*/
+    Route::get('/subscribe', 'SubscriptionController@index')->name('subscribe');
+
     Route::get('/account/activity', 'PagesController@accountActivity')->name('account_activity');
 
     Route::get('/email/change', 'PagesController@changeEmail')->name('change_email');
@@ -110,6 +113,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('admin/user/add', 'AdminPagesController@addUser')->name('_add_user');
         Route::get('admin/user/{id}/edit', 'AdminPagesController@editUser')->name('_edit_user');
         Route::post('admin/user/add', 'UsersController@saveUser')->name('_save_user');
+
         Route::post('admin/user/delete', 'UsersController@deleteUser')->name('_delete_user');
         Route::post('admin/user/{id}/update', 'UsersController@updateUser')->name('_update_user');
 

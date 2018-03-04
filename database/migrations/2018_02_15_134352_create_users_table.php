@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->integer('is_admin')->nullable();
             $table->integer('is_subscriber')->nullable();
             $table->integer('subscription_expiration')->nullable();
+            $table->string('wallet_address')->nullable();
+            $table->string('wallet_key', 200)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
