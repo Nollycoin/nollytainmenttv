@@ -84,7 +84,7 @@ INSERT INTO `genres` (`id`, `genre_name`, `is_kid_friendly`) VALUES
 (12, 'Horror', 0);
 
 
-INSERT INTO `movies` (`id`, `user_id`, `movie_name`, `movie_plot`, `movie_year`, `movie_genres`, `movie_poster_image`, `movie_thumb_image`, `movie_plays`, `movie_source`, `is_embed`, `is_featured`, `is_series`, `last_season`, `is_kid_friendly`, `free_to_watch`) VALUES
+INSERT INTO `movies` (`id`, `movie_name`,  `user_id`, `movie_plot`, `movie_year`, `movie_genres`, `movie_poster_image`, `movie_thumb_image`, `movie_plays`, `movie_source`, `is_embed`, `is_featured`, `is_series`, `last_season`, `is_kid_friendly`, `free_to_watch`) VALUES
 (39, 'Daredevil', 22, 'Matt Murdock, with his other senses superhumanly enhanced, fights crime as a blind lawyer by day, and vigilante by night.', '2015', '11', 'beed6ac962ba26570fab8c8042ed7503daredevil.jpg', '0427bd3dc8b46ddc85feb05d6aeb3efamasonry2.jpg', 0, 'https://www.youtube.com/watch?v=m5_A0Wx0jU4&t=1s', 0, 1, 1, 0, 0, 0),
 (43, 'Back To The Future', 22, 'Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.', '', '11', '6733a8b78bd52d3377adacd001d4cc43back-to-the-future-wallpaper-12.jpg', 'abf71042c600b1124480639355209ad2masonry25.jpg', 0, 'https://www.youtube.com/watch?v=qvsgGtivCgs', 0, 0, 0, 0, 0, 1),
 (44, 'Cabin In The Woods', 22, 'Five friends go for a break at a remote cabin, where they get more than they bargained for, discovering the truth behind the cabin in the woods.', '', '12', '599553ec5d2626a4f9465a32da89d303thecabinwoods.jpg', '506bbbc5920189e551d0c78d5a939b87masonry29.jpg', 0, 'https://www.youtube.com/watch?v=u1Ea86glnRU', 0, 0, 0, 0, 0, 1);
