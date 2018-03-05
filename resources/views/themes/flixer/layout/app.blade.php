@@ -186,13 +186,13 @@ Twitter
                                 <label>
                                     <span>Email</span>
                                 </label>
-                                <input type="email" name="email" required class="form-control" value="admin@admin.com">
+                                <input type="email" name="email" required class="form-control" value="">
                             </div>
                             <div class="form-group">
                                 <label>
                                     <span>Password</span>
                                 </label>
-                                <input type="password" name="password" required class="form-control" value="admin">
+                                <input type="password" name="password" required class="form-control" value="">
                             </div>
                             <button type="submit" name="login" class="btn btn-danger btn-fill pull-right">
                                 Sign In
