@@ -36,8 +36,8 @@
                         </div>
                     </div>
                 </form>
-                <li id="search-toggle"><a href="#" onclick="showSearch();"> <i class="ti-search"></i> &nbsp
-                        <span>Search</span> </a>
+                <li id="search-toggle"><a href="#" @click="showSearch()"> <i class="ti-search"></i>
+                        &nbsp<span>Search</span> </a>
                 </li>
 
                 @if(!(\Illuminate\Support\Facades\Auth::check()))

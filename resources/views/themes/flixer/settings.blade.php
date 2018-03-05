@@ -5,7 +5,7 @@
 @include('themes.flixer.layout.nav')
 
 @section('body')
-    <div class="container animated fadeIn" onclick="hideSearch();">
+    <div class="container animated fadeIn" v-on:click="hideSearch()">
         <div class="row">
             <div class="col-lg-12">
                 <div class="settings-container">
