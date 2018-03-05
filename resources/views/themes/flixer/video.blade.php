@@ -35,13 +35,11 @@
                     </p>
                 </video>
 
-
-
                 {{--inetgrate a different player here--}}
             @else
                 <div class="subscribe-alert text-center">
                     <h2>Available only to Subscribers</h2>
-                    <a href="{{ url('/') }}/register.php" class="btn btn-default btn-fill btn-lg">
+                    <a href="{{ url('/') }}/register" class="btn btn-default btn-fill btn-lg">
                         Subscribe now
                     </a>
                 </div>

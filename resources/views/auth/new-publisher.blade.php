@@ -8,7 +8,7 @@
     <div class="container animated fadeIn" onclick="hideSearch();">
         <div class="row">
             <div class="col-lg-12">
-                @if($errors->any())
+               {{-- @if($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach($errors->all() as $error)
@@ -16,8 +16,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
-
+                @endif--}}
                 <div class="col-md-6 col-md-offset-2 pricing-page">
                     <div class="panel panel-danger">
                         <div class="panel-heading"><h3 class="text-center"> Become a Publisher</h3>
@@ -53,8 +52,25 @@
 
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="company_name" class="col-md-4 col-form-label text-md-right">Company
+                                        Name</label>
+
+                                    <div class="col-md-6">
+                                        <input id="company_name" type="text"
+                                               class="form-control{{ $errors->has('company_name') ? ' is-invalid' : '' }}"
+                                               name="company_name" value="{{ old('company_name') }}" required>
+
+                                        @if ($errors->has('company_name'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('company_name') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>

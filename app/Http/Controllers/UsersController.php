@@ -245,9 +245,10 @@ class UsersController extends Controller
     public function createPublisher(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:7',
-            'password_confirmation' => 'required|min:7'
+            'password_confirmation' => 'required|min:7',
+            'company_name' => 'required|string'
         ]);
 
 
@@ -256,12 +257,22 @@ class UsersController extends Controller
         $user->email = $request->get('email');
 
         $user->phone = (isset($request->user_phone) ? $request->user_phone : '');
+        $user->company_name = $request->get('company_name');
         $user->password = bcrypt($request->user_password);
         $user->is_admin = 0;
         $user->is_subscriber = 0;
         $user->is_publisher = 1;
+
         $user->save();
 
-        return redirect(route('home'))->with('success', 'Reigistration completed successfully');
+        /*Auth::attempt(
+            [
+                'email' => $user->email,
+                'password' => $request->get('user_password')
+
+            ], true
+        );*/
+
+        return redirect(route('home'))->with('success', 'Registration completed successfully');
     }
 }
