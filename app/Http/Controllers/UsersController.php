@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PublisherRegistered;
+use App\Mail\SubscriberRegistered;
 use App\Profile;
 use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -193,6 +196,8 @@ class UsersController extends Controller
             'last_profile' => $profile->id
         ]);
 
+        Mail::to($request->user())->send(new SubscriberRegistered($user, $request->get('password')));
+
         return redirect(route('_users'));
     }
 
@@ -265,13 +270,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        /*Auth::attempt(
-            [
-                'email' => $user->email,
-                'password' => $request->get('user_password')
-
-            ], true
-        );*/
+        Mail::to($request->user())->send(new PublisherRegistered($user, $request->get('password')));
 
         return redirect(route('home'))->with('success', 'Registration completed successfully');
     }

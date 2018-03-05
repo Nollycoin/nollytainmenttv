@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PartnerAdded;
 use App\Team;
 use App\TeamMember;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PartnersController extends Controller
 {
@@ -46,6 +48,8 @@ class PartnersController extends Controller
             'share' => 'required',
             'wallet' => 'required|string'
         ]);
+
+        $user = User::findOrFail($request->get('user_id'));
         $verify = TeamMember::where('team_id', Auth::id())->count();
 
         $team = Team::where('owner_id', Auth::id())->first();
@@ -75,6 +79,10 @@ class PartnersController extends Controller
         $teamMember->wallet_address = $request->get('address');
         $teamMember->team_id = $team->id;
         $teamMember->save();
+
+        Mail::to($user)->send(new PartnerAdded(Auth::user(),
+            $user, $request->get('share'),
+            $request->get('wallet')));
 
         return redirect()->back()->with('success', 'Team Member was added successfully');
     }

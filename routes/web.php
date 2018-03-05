@@ -73,7 +73,6 @@ Route::get('/episode/{id}/load', 'EpisodesController@loadEpisode')->name('load_e
 Route::get('/video/{id}/set_player_source', 'VideosController@setPlayerSource')->name('set_video_player_source');
 
 
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/movie/{id}/add_to_list', 'MoviesController@addMovieToList')
         ->name('add_movie_to_list');
