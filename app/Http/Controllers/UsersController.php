@@ -241,4 +241,27 @@ class UsersController extends Controller
         $user->profile->delete();
         $user->delete();
     }
+
+    public function createPublisher(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:7',
+            'password_confirmation' => 'required|min:7'
+        ]);
+
+
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+
+        $user->phone = (isset($request->user_phone) ? $request->user_phone : '');
+        $user->password = bcrypt($request->user_password);
+        $user->is_admin = 0;
+        $user->is_subscriber = 0;
+        $user->is_publisher = 1;
+        $user->save();
+
+        return redirect(route('home'))->with('success', 'Reigistration completed successfully');
+    }
 }

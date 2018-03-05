@@ -182,4 +182,54 @@ class VideosController extends Controller
 
         return 'true';
     }
+
+
+    public function setPlayerSource(Request $request, $id)
+    {
+        $is_series = $request->get('is_series');
+        $is_embed = $request->get('is_embed');
+
+        if($is_series == 0) {
+            $movie = Movie::where('id', $id)->first();
+            if ($movie != null){
+                if ($is_embed == 0){
+                   return json_encode($movie);
+                }else{
+                    return '<iframe width="100%" height="100%" 
+                    src="'.$movie->movie_source.'" frameborder="0" 
+                    scrolling="no" allowfullscreen=""></iframe>';
+                }
+            }
+        } else {
+            $season = Season::where('movie_id', $id)->first();
+
+            if ($season != null){
+                $episode = Episode::where('season_id', $season->id)->first();
+
+                if ($episode != null){
+                    $episode_index = $episode->episode_number;
+
+                    if ($is_embed == 0){
+                        $movie = Movie::where('id', $episode->movie_id)->first();
+
+                        $series_poster = $movie->movie_poster_image;
+
+                        $playlist = Episode::where('season_id', $episode->season_id)->orderBy('episode_number', 'ASC')->get();
+
+
+                        return json_encode(array(
+                            'episode_index' => $episode_index,
+                            'playlist' => $playlist,
+                            'series_poster_image' => $series_poster
+                        ));
+                    }
+
+                    return '<iframe width="100%" height="100%" 
+                            src="'.$episode->episode_source.'" frameborder="0" scrolling="no" allowfullscreen=""></iframe>';
+                }
+            }
+        }
+
+        return '';
+    }
 }

@@ -18,19 +18,21 @@
                     </div>
                 @endif
 
-                    <div class="col-md-6 col-md-offset-2 pricing-page">
+                <div class="col-md-6 col-md-offset-2 pricing-page">
                     <div class="panel panel-danger">
                         <div class="panel-heading"><h3 class="text-center"> Become a Publisher</h3>
                         </div>
                         <div class="panel-body text-center">
-                            <form method="POST" action="{{ route('register') }}">
-                                @csrf
+                            <form method="POST" action="{{ route('save_publisher') }}">
+                                {{ csrf_field() }}
 
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                        <input id="name" type="text"
+                                               class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                               name="name" value="{{ old('name') }}" required autofocus>
 
                                         @if ($errors->has('name'))
                                             <span class="invalid-feedback">
@@ -41,10 +43,13 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                                    <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail
+                                        Address</label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                        <input id="email" type="email"
+                                               class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                               name="email" value="{{ old('email') }}" required>
 
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback">
@@ -58,18 +63,20 @@
                                     <label for="email" class="col-md-4 col-form-label text-md-right">Role</label>
 
                                     <div class="col-md-6">
-                                        <input id="role" type="text" class="form-control" name="role" value="Publisher" disabled="" required>
+                                        <input id="role" type="text" class="form-control" name="role" value="Publisher"
+                                               disabled="disabled" required>
 
                                     </div>
                                 </div>
-
 
 
                                 <div class="form-group row">
                                     <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                     <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                        <input id="password" type="password"
+                                               class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                               name="password" required>
 
                                         @if ($errors->has('password'))
                                             <span class="invalid-feedback">
@@ -80,10 +87,12 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                                    <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">Confirm
+                                        Password</label>
 
                                     <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                        <input id="password_confirmation" type="password" class="form-control"
+                                               name="password_confirmation" required>
                                     </div>
                                 </div>
 
@@ -99,18 +108,17 @@
                     </div>
                 </div>
 
-                    <div class="col-md-4" style="padding-top: 100px">
-                        <h3> Become a pulisher to <br></h3>
-                        <ul>
-                            <li>Publish Movies on Nollytv </li>
-                            <li> Setup Distribution contracts for upto 5 partners to receive payments for movies. </li>
-                            <li>
-                                Keep track of all payments made to partners in a movie project.
-                            </li>
-                        </ul>
-                        </p>
-                    </div>
-
+                <div class="col-md-4" style="padding-top: 100px">
+                    <h3> Become a pulisher to <br></h3>
+                    <ul>
+                        <li>Publish Movies on Nollytv</li>
+                        <li> Setup Distribution contracts for upto 5 partners to receive payments for movies.</li>
+                        <li>
+                            Keep track of all payments made to partners in a movie project.
+                        </li>
+                    </ul>
+                    </p>
+                </div>
 
 
             </div>
@@ -143,7 +151,7 @@
 
 @section('js')
     <script>
-        $('#register-btn').on('click', function(e){
+        $('#register-btn').on('click', function (e) {
             /*a bit of validation here*/
             e.preventDefault();
             $.post('/register', function (data) {

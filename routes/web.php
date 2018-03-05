@@ -18,6 +18,7 @@ Route::get('/', function () {
     return redirect('/home');
 });
 Route::get('/publisher/create', 'PagesController@createPublisher')->name('newPublisher');
+Route::post('/publisher/create', 'UsersController@createPublisher')->name('save_publisher');
 
 Route::post('/subscriber/create', 'UsersController@subscriberRegister')->name('createSubscriber');
 
@@ -64,6 +65,13 @@ Route::get('publisher/video/{id}/delete', 'VideosController@deleteVideo')->name(
 Route::get('publisher/video/{id}/edit', 'PublisherPagesController@editVideo')->name('_publisher_edit_video');
 Route::get('/publisher/videos', 'PublisherPagesController@videos')->name('_publisher_videos_');
 Route::get('/video/{id}/watching', 'WatchLogController@logWatch')->name('_log_watch_');
+
+
+Route::get('/season/{id}/load', 'SeasonsController@fetchSeasonData')->name('get_season_data');
+Route::get('/episode/{id}/load', 'EpisodesController@loadEpisode')->name('load_episode');
+Route::get('/video/{id}/set_player_source', 'VideosController@setPlayerSource')->name('set_video_player_source');
+
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/movie/{id}/add_to_list', 'MoviesController@addMovieToList')

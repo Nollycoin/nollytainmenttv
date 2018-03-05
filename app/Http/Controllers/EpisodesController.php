@@ -143,4 +143,35 @@ class EpisodesController extends Controller
         return redirect(route('_edit_episode', ['id' => $episode->id]))->with('success', 'Episode was updated successfully');
 
     }
+
+
+    public function loadEpisode(Request $request, $id)
+    {
+        $episode = Episode::where('id', $id)->first();
+        $is_embed = ($request->has('is_embed') ? $request->get('is_embed') : 1);
+
+        if ($episode != null){
+            $episode_index = $episode->episode_number;
+
+            if ($is_embed == 0){
+                $movie = Movie::where('id', $episode->movie_id)->first();
+
+                $series_poster = $movie->movie_poster_image;
+
+                $playlist = Episode::where('season_id', $episode->season_id)->orderBy('episode_number', 'ASC')->get();
+
+
+                return json_encode(array(
+                   'episode_index' => $episode_index,
+                    'playlist' => $playlist,
+                    'series_poster_image' => $series_poster
+                ));
+            }
+
+            return '<iframe width="100%" height="100%" 
+            src="'.$episode->episode_source.'" frameborder="0" scrolling="no" allowfullscreen=""></iframe>';
+        }
+
+        return '';
+    }
 }
