@@ -54,14 +54,14 @@ class UsersController extends Controller
 
 
 
-        $eth = json_decode($this->generateAddress());
+//        $eth = json_decode($this->generateAddress());
 
 
-        $ethAddress = $eth->address;
-        $ethKey = bcrypt($eth->privateKey);
+//        $ethAddress = $eth->address;
+//        $ethKey = bcrypt($eth->privateKey);
 
-        $user->wallet_address = $ethAddress;
-        $user->wallet_key = $ethKey;
+        $user->wallet_address = '';
+        $user->wallet_key = '';
 
 
         $user->save();
