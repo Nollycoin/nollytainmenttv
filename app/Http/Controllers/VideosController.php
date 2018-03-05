@@ -166,8 +166,7 @@ class VideosController extends Controller
         return redirect(route('_edit_video', ['id'=>$movie->id]))->with('success', 'Video was edited successfully');
     }
 
-    public
-    function deleteVideo($id)
+    public function deleteVideo($id)
     {
         $video = Movie::findOrFail($id);
 
@@ -182,7 +181,6 @@ class VideosController extends Controller
 
         return 'true';
     }
-
 
     public function setPlayerSource(Request $request, $id)
     {

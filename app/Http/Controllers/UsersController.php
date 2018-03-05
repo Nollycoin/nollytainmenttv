@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PublisherRegistered;
+use App\Mail\SubscriberRegistered;
 use App\Profile;
 use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
@@ -193,6 +196,8 @@ class UsersController extends Controller
             'last_profile' => $profile->id
         ]);
 
+        Mail::to($request->user())->send(new SubscriberRegistered($user, $request->get('password')));
+
         return redirect(route('_users'));
     }
 
@@ -245,9 +250,10 @@ class UsersController extends Controller
     public function createPublisher(Request $request){
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:7',
-            'password_confirmation' => 'required|min:7'
+            'password_confirmation' => 'required|min:7',
+            'company_name' => 'required|string'
         ]);
 
 
@@ -256,12 +262,16 @@ class UsersController extends Controller
         $user->email = $request->get('email');
 
         $user->phone = (isset($request->user_phone) ? $request->user_phone : '');
+        $user->company_name = $request->get('company_name');
         $user->password = bcrypt($request->user_password);
         $user->is_admin = 0;
         $user->is_subscriber = 0;
         $user->is_publisher = 1;
+
         $user->save();
 
-        return redirect(route('home'))->with('success', 'Reigistration completed successfully');
+        Mail::to($request->user())->send(new PublisherRegistered($user, $request->get('password')));
+
+        return redirect(route('home'))->with('success', 'Registration completed successfully');
     }
 }

@@ -25,30 +25,30 @@
 
         <div class="player-single-outter container" onclick="hideSearch()">
             @if(\App\Helpers\Movie::canWatch($movie->free_to_watch))
-                <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-                       poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-                    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4.mp4" type='video/mp4'>
-                    <source src="MY_VIDEO.webm" type='video/webm'>
+                <video id="my-video" class="video-js" controls preload="auto" width="960" height="380"
+                       poster="{{ \App\Helpers\Constants::getUploadDirectory().
+                       '/masonry_images/'. $movie->movie_thumb_image }}" data-setup="{}">
+                    <source src="{{ $movie->movie_source }}" type='video/mp4'>
+                    {{--<source src="MY_VIDEO.webm" type='video/webm'>
+                    http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4--}}
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser that
                         <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
 
-
-
                 {{--inetgrate a different player here--}}
             @else
                 <div class="subscribe-alert text-center">
                     <h2>Available only to Subscribers</h2>
-                    <a href="{{ url('/') }}/register.php" class="btn btn-default btn-fill btn-lg">
+                    <a href="{{ url('/') }}/register" class="btn btn-default btn-fill btn-lg">
                         Subscribe now
                     </a>
                 </div>
             @endif
         </div>
     </div>
-    <div class="movie" onclick="hideSearch();">
+    <div class="movie" v-on:click="hideSearch()">
         <div class="container" style="padding:0px;">
             <div class="col-lg-5 pull-left">
                 <div class="main-info">

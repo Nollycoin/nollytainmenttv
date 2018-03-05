@@ -5,7 +5,7 @@
 @include('themes.flixer.layout.nav')
 
 @section('body')
-    <div class="content animated fadeIn" onclick="hideSearch();">
+    <div class="content animated fadeIn" v-on:click="hideSearch()">
         <div class="profile-selection vertical-center">
             <h1>Who is watching</h1>
             @foreach($profiles as $profile)

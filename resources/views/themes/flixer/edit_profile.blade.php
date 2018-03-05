@@ -5,7 +5,7 @@
 @include('themes.flixer.layout.nav')
 
 @section('body')
-    <div class="content animated fadeIn" onclick="hideSearch();">
+    <div class="content animated fadeIn" v-on:click="hideSearch()">
         <div class="edit-profile col-lg-6 col-centered">
             <form action="" method="post">
                 <h1 class="pull-left">Edit Profile</h1>
