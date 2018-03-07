@@ -25,7 +25,13 @@ class PartnersController extends Controller
             'user_email.exists' => "$request->user_email doesn't exists for any user"
         ]);
 
-        $pendingPartner = User::where('email', $request->user_email)->first();
+        $pendingPartner = User::where('email', $request->user_email)->where('email', '!=', Auth::user()->email)->first();
+
+        if ($pendingPartner == null){
+            return redirect()->to(route('_add_partner'))->withErrors([
+                'The email address you provided belongs to you'
+            ]);
+        }
 
         if (Auth::user()->team != null) {
             $verify = TeamMember::where('user_id', $pendingPartner->id)

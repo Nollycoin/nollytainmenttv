@@ -45,24 +45,13 @@
             </div>
         </div>
 
-        @if(isset($userBasics) && $errors->has('error'))
+        @if(isset($userBasics))
             <div class="container-fluid">
                 <div class="card">
                     <div class="header">
                         <h4 class="title">Add New Partner</h4>
                     </div>
                     <div class="content">
-                        @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($errors->all() as $key => $error)
-                                        @if($key == 'error')
-                                            <li>{{ $error }}</li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <form action="{{ route('_save_new_partner') }}" method="post">
 
                             <input type="text" hidden="hidden" value="{{ $userBasics->id }}" name="user_id"/>
