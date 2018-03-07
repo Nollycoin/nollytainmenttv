@@ -57,7 +57,7 @@
                         @if(!\App\Helpers\Constants::isKid())
                             <ul class="dropdown-menu dropdown-menu-right">
 
-                                @if(\Illuminate\Support\Facades\Auth::check())
+                                @if(\Illuminate\Support\Facades\Auth::user()->is_admin == 1)
                                     <li>
                                         <a href="{{ route('_dashboard')  }}">Admin</a>
                                     </li>

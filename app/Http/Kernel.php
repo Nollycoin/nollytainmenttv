@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AuthenticateAdmin;
+use App\Http\Middleware\CheckPublisher;
 use App\Http\Middleware\CheckTheme;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -63,6 +64,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'theme' => CheckTheme::class,
-        'admin' => AuthenticateAdmin::class
+        'admin' => AuthenticateAdmin::class,
+        'publisher' => CheckPublisher::class
     ];
 }
