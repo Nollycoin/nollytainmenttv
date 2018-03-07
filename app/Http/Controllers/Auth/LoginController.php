@@ -39,6 +39,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function redirectPath()
+    {
+        if (Auth::user()->is_publisher == 1){
+            return route('publisher_dashboard');
+        }
+        return route('home');
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         return redirect('/');

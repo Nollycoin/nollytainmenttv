@@ -250,6 +250,7 @@ class UsersController extends Controller
     }
 
     public function createPublisher(Request $request){
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -257,7 +258,6 @@ class UsersController extends Controller
             'password_confirmation' => 'required|min:7',
             'company_name' => 'required|string'
         ]);
-
 
         $user = new User();
         $user->name = $request->get('name');
@@ -272,9 +272,9 @@ class UsersController extends Controller
 
         $user->save();
 
-        Mail::to($request->user())->send(new PublisherRegistered($user, $request->get('password')));
+        //Mail::to($request->user())->send(new PublisherRegistered($user, $request->get('password')));
 
-        Auth::attempt($user, true);
+        Auth::login($user, true);
 
         return redirect(route('publisher_dashboard'))->with('message', 'Registration completed successfully');
     }
