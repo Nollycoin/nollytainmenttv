@@ -64,7 +64,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+
+                       {{-- <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label>Rank</label>
@@ -81,7 +82,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
 
                         <div class="pull-left">
                             <button type="submit" name="save" class="btn btn-success btn-fill btn-wd">Save</button>

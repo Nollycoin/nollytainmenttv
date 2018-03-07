@@ -114,7 +114,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/admin/actors', 'AdminPagesController@actors')->name('_actors');
         Route::get('/admin/codes', 'AdminPagesController@codes')->name('_codes');
         Route::get('/admin/pages', 'AdminPagesController@pages')->name('_pages');
-        Route::get('/admin/themes', 'AdminPagesController@themes')->name('_themes');
+        #//Route::get('/admin/themes', 'AdminPagesController@themes')->name('_themes');
         Route::get('/admin/settings', 'AdminPagesController@settings')->name('_settings');
 
         Route::get('admin/user/add', 'AdminPagesController@addUser')->name('_add_user');

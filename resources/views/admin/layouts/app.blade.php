@@ -81,12 +81,6 @@
                         <p>Pages</p>
                     </a>
                 </li>
-                <li class="@yield('_themes_active')">
-                    <a href="{{ route('_themes') }}">
-                        <i class="ti-palette"></i>
-                        <p>Themes</p>
-                    </a>
-                </li>
                 <li class="@yield('_settings_active')">
                     <a href="{{ route('_settings') }}">
                         <i class="ti-settings"></i>
