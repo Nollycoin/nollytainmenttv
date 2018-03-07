@@ -23,16 +23,20 @@ class PublisherPagesController extends Controller
     public function partners()
     {
         $team = [];
-        $teamMembers = TeamMember::where('team_id', Auth::user()->team->id)->get();
 
-        if ($teamMembers != null){
-            foreach ($teamMembers as $teamMember){
-                $user = User::where('id', $teamMember->user_id)->first();
-                $user->share = $teamMember->share;
+        if(Auth::user()->team !=  null){
+            $teamMembers = TeamMember::where('team_id', Auth::user()->team->id)->get();
 
-                array_push($team, $user);
+            if ($teamMembers != null){
+                foreach ($teamMembers as $teamMember){
+                    $user = User::where('id', $teamMember->user_id)->first();
+                    $user->share = $teamMember->share;
+
+                    array_push($team, $user);
+                }
             }
         }
+
         return view('publisher.partners', [
            'users' => $team
         ]);
@@ -44,7 +48,7 @@ class PublisherPagesController extends Controller
 
     public function videos(Request $request)
     {
-        $videos = Movie::paginate(20); /* where('id', Auth::id())-> */
+        $videos = Movie::where('id', Auth::id())->paginate(20);
         return view('publisher.videos', ['movies' => $videos]);
     }
 
