@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('createSubscriber') }}">
                                 @csrf
 
                                 <div class="form-group row">

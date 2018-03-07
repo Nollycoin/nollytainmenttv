@@ -79,7 +79,7 @@
                         @endif
                     </li>
                     @if (\App\Helpers\Constants::isKid())
-                        <a href="select_profile"
+                        <a href="{{ route('select_profile') }}"
                            class="btn btn-danger btn-fill btn-sm exit-kids">
                             Exit Kids
                         </a>
