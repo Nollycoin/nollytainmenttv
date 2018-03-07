@@ -81,6 +81,8 @@ class UsersController extends Controller
         ]);
 
         return redirect(route('subscribe'));
+
+
     }
     public function changeEmail(Request $request)
     {
@@ -272,6 +274,8 @@ class UsersController extends Controller
 
         Mail::to($request->user())->send(new PublisherRegistered($user, $request->get('password')));
 
-        return redirect(route('home'))->with('success', 'Registration completed successfully');
+        Auth::attempt($user, true);
+
+        return redirect(route('publisher_dashboard'))->with('message', 'Registration completed successfully');
     }
 }
