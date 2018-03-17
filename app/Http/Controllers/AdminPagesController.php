@@ -41,7 +41,8 @@ class AdminPagesController extends Controller
     {
         $genres = Genre::paginate(10);
         foreach ($genres as $genre) {
-            $genreMovies = Movie::whereRaw("find_in_set('" . $genre->id . "', movie_genres)")->orderBy('id', 'desc')->get();
+            $genreMovies = Movie::whereRaw("find_in_set('" . $genre->id . "', movie_genres)")
+                ->where('user_id', Auth::id())->orderBy('id', 'desc')->get();
             $genre->movies = $genreMovies;
         }
 
@@ -60,7 +61,7 @@ class AdminPagesController extends Controller
 
     public function videos(Request $request)
     {
-        $videos = Movie::where('id', Auth::id())->paginate(20);
+        $videos = Movie::where('user_id', Auth::id())->paginate(20);
 
         return view('admin.videos', ['movies' => $videos]);
     }
