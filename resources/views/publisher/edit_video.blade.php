@@ -163,17 +163,6 @@
                                     <div class="panel-heading panel-title">Video Status</div>
                                     <div class="panel-body">
                                         <div class="form-group">
-                                            <label>Featured</label>
-                                            <select name="is_featured" class="form-control">
-                                                <option value="1" {{ $movie->is_featured == 1 ? 'selected' : false }}>
-                                                    True
-                                                </option>
-                                                <option value="0" {{ $movie->is_featured == 0 ? 'selected' : false }}>
-                                                    False
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Who can watch?</label>
                                             <select name="free_to_watch" class="form-control">
                                                 <option value="0" {{ $movie->free_to_watch == 0 ? 'selected' : false }}>

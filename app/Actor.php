@@ -13,4 +13,8 @@ class Actor extends Model
     public function actorRelations(){
         return $this->hasMany('App\ActorRelation');
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

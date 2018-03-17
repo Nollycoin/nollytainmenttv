@@ -140,13 +140,6 @@
                                     <div class="panel-heading panel-title">Video Status</div>
                                     <div class="panel-body">
                                         <div class="form-group">
-                                            <label> Featured </label>
-                                            <select name="is_featured" class="form-control">
-                                                <option value="0"> True</option>
-                                                <option value="1"> False</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
                                             <label> Who can watch? </label>
                                             <select name="free_to_watch" class="form-control">
                                                 <option value="0"> Only subscribers</option>

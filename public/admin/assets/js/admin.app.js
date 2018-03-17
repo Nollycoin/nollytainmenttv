@@ -110,3 +110,16 @@ function deletePartner(id){
     }
     return false;
 }
+
+
+/*functions below are used by publisher*/
+
+function getUnallocatedPercentage(movie_id){
+    $.get('/publisher/movie/'+movie_id+'/unallocated_percentage', function(data){
+        if(data){
+            data = JSON.parse(data);
+            $('#available_percentage').html(data.unallocatedPercentage);
+            $('#movieName').html(data.movieName);
+        }
+    });
+}

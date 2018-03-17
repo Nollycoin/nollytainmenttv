@@ -81,6 +81,28 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <label for="video">Select a movie</label>
+                                    <select name="video" onchange="getUnallocatedPercentage(this.value)" id="video" class="form-control chosen">
+                                        @foreach($movies as $movie)
+                                            <option value="{{ $movie->id }}">{{ $movie->movie_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            @if(isset($templateMovie))
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4 class="text-center alert alert-info alert-bg">
+                                            Unallocated Percentage for
+                                            "<span id="movieName">{{ $templateMovie->movie_name }}</span>"
+                                            -
+                                            <span id="available_percentage">{{ $templateMovie->remainingShare }}</span>%
+                                        </h4>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <label>Percentage Share</label>
                                     <div class="input-group">
                                         <input type="number" class="form-control"

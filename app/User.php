@@ -39,4 +39,8 @@ class User extends Authenticatable
     public function team(){
         return $this->hasOne('App\Team', 'owner_id');
     }
+
+    public function actors(){
+        return $this->hasMany('App\Actor');
+    }
 }

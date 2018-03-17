@@ -58,10 +58,17 @@
                             <ul class="dropdown-menu dropdown-menu-right">
 
                                 @if(\Illuminate\Support\Facades\Auth::check())
-                                    <li>
-                                        <a href="{{ route('_dashboard')  }}">Admin</a>
-                                    </li>
-                                    <li class="divider"></li>
+                                    @if(\Illuminate\Support\Facades\Auth::user()->is_admin == 1)
+                                        <li>
+                                            <a href="{{ route('_dashboard')  }}">Admin</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                    @elseif(\Illuminate\Support\Facades\Auth::user()->is_publisher == 1)
+                                        <li>
+                                            <a href="{{ route('publisher_dashboard')  }}">Dashboard</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                    @endif
                                 @endif
                                 <li>
                                     <a href="{{ route('my_list') }}">My List</a>

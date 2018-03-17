@@ -24,7 +24,7 @@
                     <thead>
                     <th class="text-center"> Email</th>
                     <th class="text-center"> Name</th>
-                    <th class="text-center"> Phone</th>
+                    <th class="text-center"> Movie Name</th>
                     <th class="text-center"> Percentage %</th>
                     <th class="text-center"> Actions</th>
                     </thead>
@@ -33,7 +33,7 @@
                         <tr>
                             <td class="text-center">{{ $user->email }}</td>
                             <td class="text-center">{{ $user->name }}</td>
-                            <td class="text-center">{{ $user->phone }}</td>
+                            <td class="text-center">{{ $user->share_movie }}</td>
                             <td class="text-center">{{ $user->share }}%</td>
                             <td class="text-center">
                                 <a href="#" onclick="deletePartner('{{ $user->id }}')" class="btn btn-danger">Remove</a>

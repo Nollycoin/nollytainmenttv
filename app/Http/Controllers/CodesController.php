@@ -79,8 +79,11 @@ class CodesController extends Controller
     public function deleteCode($id)
     {
         $code = Code::findOrFail($id);
-        $code->delete();
-
+        try {
+            $code->delete();
+        } catch (\Exception $e) {
+            return 'false';
+        }
         return 'true';
     }
 }

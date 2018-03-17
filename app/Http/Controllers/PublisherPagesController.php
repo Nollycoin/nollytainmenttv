@@ -7,14 +7,15 @@ use App\ActorRelation;
 use App\Genre;
 use App\Movie;
 use App\Setting;
+use App\Team;
 use App\TeamMember;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PublisherPagesController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('publisher.dashboard', [
 
         ]);
@@ -24,35 +25,45 @@ class PublisherPagesController extends Controller
     {
         $team = [];
 
-        if(Auth::user()->team !=  null){
-            $teamMembers = TeamMember::where('team_id', Auth::user()->team->id)->get();
+        $teams = Team::where('owner_id', Auth::id())->get();
 
-            if ($teamMembers != null){
-                foreach ($teamMembers as $teamMember){
-                    $user = User::where('id', $teamMember->user_id)->first();
-                    $user->share = $teamMember->share;
+        if ($teams) {
+            foreach ($teams as $t) {
+                $teamMembers = TeamMember::where('team_id', $t->id)->get();
 
-                    array_push($team, $user);
+                if ($teamMembers != null) {
+                    foreach ($teamMembers as $teamMember) {
+                        $user = User::where('id', $teamMember->user_id)->first();
+                        $user->share = $teamMember->share;
+
+                        $user->share_movie = Movie::where('id', $t->movie_id)->first()->movie_name;
+
+                        array_push($team, $user);
+                    }
                 }
             }
         }
 
         return view('publisher.partners', [
-           'users' => $team
+            'users' => $team
         ]);
     }
 
-    public function addPartner(){
+    public
+    function addPartner()
+    {
         return view('publisher.add_partner');
     }
 
-    public function videos(Request $request)
+    public
+    function videos()
     {
-        $videos = Movie::where('id', Auth::id())->paginate(20);
+        $videos = Movie::where('user_id', Auth::id())->paginate(20);
         return view('publisher.videos', ['movies' => $videos]);
     }
 
-    public function addVideo()
+    public
+    function addVideo()
     {
         $genres = Genre::all();
         $actors = Actor::all();
@@ -66,13 +77,15 @@ class PublisherPagesController extends Controller
         ]);
     }
 
-    public function editVideo($id){
+    public
+    function editVideo($id)
+    {
 
         $video = Movie::findOrFail($id);
         $genres = Genre::all();
         $actors = Actor::all();
 
-        foreach ($actors as $actor){
+        foreach ($actors as $actor) {
             if (ActorRelation::where('movie_id', $id)->where('actor_id', $actor->id)->first() != null)
                 $actor->is_in_cast = 1;
             else

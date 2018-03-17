@@ -20,19 +20,25 @@ class ActorsController extends Controller
 
         $actorImage = $request->file('actor_picture');
 
-        $imageName = md5(mt_rand()) . $actorImage->getClientOriginalName();
+        try {
+            $imageName = md5(mt_rand()) . $actorImage->getClientOriginalName();
 
-        $actorImage->move(public_path(Constants::getUploadDirectory() . '/actors/'),
-            $imageName);
+            $actorImage->move(public_path(Constants::getUploadDirectory() . '/actors/'),
+                $imageName);
 
-        $actor = new Actor([
-            'actor_name' => $request->get('actor_name'),
-            'actor_picture' => $imageName
-        ]);
+            $actor = new Actor([
+                'actor_name' => $request->get('actor_name'),
+                'actor_picture' => $imageName
+            ]);
 
-        $actor->save();
+            $actor->save();
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors([
+                'An error occurred while adding the actor'
+            ]);
+        }
 
-        return redirect(route('_actors'));
+        return redirect()->back()->with('success', 'Actor was added successfully');
     }
 
     public function updateActor(Request $request, $id)
@@ -46,20 +52,26 @@ class ActorsController extends Controller
             $actor->actor_name = $request->get('actor_name');
         }
 
-        if ($request->has('actor_picture')) {
-            $pic = $actor->actor_picture;
-            unlink(public_path(Constants::getUploadDirectory() . '/actors/' . $pic));
+        try {
+            if ($request->has('actor_picture')) {
+                $pic = $actor->actor_picture;
+                unlink(public_path(Constants::getUploadDirectory() . '/actors/' . $pic));
 
-            $actorImage = $request->file('actor_picture');
-            $imageName = md5(mt_rand()) . $actorImage->getClientOriginalName();
+                $actorImage = $request->file('actor_picture');
+                $imageName = md5(mt_rand()) . $actorImage->getClientOriginalName();
 
-            $actorImage->move(public_path(Constants::getUploadDirectory() . '/actors/'),
-                $imageName);
+                $actorImage->move(public_path(Constants::getUploadDirectory() . '/actors/'),
+                    $imageName);
+            }
+
+            $actor->update();
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors([
+                'An error occurred while updating the actor'
+            ]);
         }
 
-        $actor->update();
-
-        return redirect(route('_edit_actor', ['id' => $actor->id]))->with([
+        return redirect()->back()->with([
             'success' => 'Edit was successful'
         ]);
     }
@@ -69,11 +81,15 @@ class ActorsController extends Controller
 
         $actor = Actor::findOrFail($id);
 
-        unlink(public_path(Constants::getUploadDirectory() . '/actors/' . $actor->actor_picture));
+        try {
+            unlink(public_path(Constants::getUploadDirectory() . '/actors/' . $actor->actor_picture));
 
-        ActorRelation::where('actor_id', $actor->id)->delete();
+            ActorRelation::where('actor_id', $actor->id)->delete();
 
-        $actor->delete();
+            $actor->delete();
+        } catch (\Exception $e) {
+            return 'false';
+        }
 
         return 'true';
     }
