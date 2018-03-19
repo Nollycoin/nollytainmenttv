@@ -75,7 +75,7 @@ class AdminPagesController extends Controller
 
     public function actors()
     {
-        $actors = Actor::paginate(20);
+        $actors = Actor::where('user_id', Auth::id())->paginate(20);
 
         return view('admin.actors', ['actors' => $actors]);
     }

@@ -77,8 +77,7 @@ class PublisherPagesController extends Controller
         ]);
     }
 
-    public
-    function editVideo($id)
+    public function editVideo($id)
     {
 
         $video = Movie::findOrFail($id);
@@ -98,5 +97,15 @@ class PublisherPagesController extends Controller
             'settings' => Setting::find(1),
             'actors' => $actors
         ]);
+    }
+
+    public function actors()
+    {
+        $actors = Actor::where('user_id', Auth::id())->paginate(20);
+        return view('publisher.actors', ['actors' => $actors]);
+    }
+
+    public function addActor(){
+        return view('publisher.add_actor');
     }
 }

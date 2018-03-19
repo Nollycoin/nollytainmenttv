@@ -20,9 +20,9 @@
 <div class="wrapper">
     <div class="sidebar" data-background-color="black" data-active-color="success">
         <div class="sidebar-wrapper" style="overflow-x:hidden; width: auto">
-            <div class="logo" style="margin-top: -20px;">
+            <div class="logo">
                 <a href="#" class="simple-text">
-                    <img src="{{ asset('admin/assets/images/logo.png') }}">
+                    <img class="sidebar-logo" src="{{ asset('themes/flixer/assets/images/logo.png') }}">
                 </a>
             </div>
 
@@ -31,6 +31,12 @@
                     <a href="{{ route('publisher_dashboard') }}">
                         <i class="ti-panel"></i>
                         <p> Dashboard </p>
+                    </a>
+                </li>
+                <li class="@yield('_actors_active')">
+                    <a href="{{ route('_publisher_actors_') }}">
+                        <i class="ti-star"></i>
+                        <p>Actors</p>
                     </a>
                 </li>
                 <li class="@yield('_partners_active')">

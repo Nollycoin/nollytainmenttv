@@ -82,6 +82,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/settings', 'PagesController@settings')->name('settings');
     Route::get('/select_profile', 'PagesController@selectProfile')->name('select_profile');
 
+
+
+    /*common routes that require auth*/
+    Route::get('actor/{id}/delete', 'ActorsController@deleteActor')->name('_delete_actor');
+    Route::post('actor/add', 'ActorsController@saveActor')->name('_save_actor');
+    Route::post('actor/{id}/update', 'ActorsController@updateActor')->name('_update_actor');
+
+    Route::post('video/{id}/update', 'VideosController@updateVideo')->name('_update_video');
+    Route::get('video/{id}/delete', 'VideosController@deleteVideo')->name('_delete_video');
+    Route::get('video/{id}/edit', 'AdminPagesController@editVideo')->name('_edit_video');
+
+
     Route::group(['middleware' => ['admin']], function (){
         /*admin routes*/
         Route::get('/admin/dashboard', 'AdminPagesController@index')->name('_dashboard');
@@ -106,15 +118,10 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('admin/video/add', 'AdminPagesController@addVideo')->name('_add_video');
         Route::post('admin/video/add', 'VideosController@saveVideo')->name('_save_video');
-        Route::post('admin/video/{id}/update', 'VideosController@updateVideo')->name('_update_video');
-        Route::get('admin/video/{id}/delete', 'VideosController@deleteVideo')->name('_delete_video');
-        Route::get('admin/video/{id}/edit', 'AdminPagesController@editVideo')->name('_edit_video');
 
         Route::get('admin/actor/add', 'AdminPagesController@addActor')->name('_add_actor');
         Route::get('admin/actor/{id}/edit', 'AdminPagesController@editActor')->name('_edit_actor');
-        Route::get('admin/actor/{id}/delete', 'ActorsController@deleteActor')->name('_delete_actor');
-        Route::post('admin/actor/add', 'ActorsController@saveActor')->name('_save_actor');
-        Route::post('admin/actor/{id}/update', 'ActorsController@updateActor')->name('_update_actor');
+
 
         Route::get('admin/episode/add', 'AdminPagesController@addEpisode')->name('_add_episode');
         Route::post('admin/episode/add', 'EpisodesController@saveEpisode')->name('_save_episode');
@@ -158,6 +165,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('publisher/video/{id}/delete', 'VideosController@deleteVideo')->name('_publisher_delete_video');
         Route::get('publisher/video/{id}/edit', 'PublisherPagesController@editVideo')->name('_publisher_edit_video');
         Route::get('/publisher/videos', 'PublisherPagesController@videos')->name('_publisher_videos_');
+
+
+        Route::get('/publisher/actors', 'PublisherPagesController@actors')->name('_publisher_actors_');
+        Route::post('/publisher/actor/find', 'ActorsController@findActorByName')->name('find_actor_by_name');
+        Route::get('publisher/actor/add', 'PublisherPagesController@addActor')->name('_publisher_add_actor');
+
         Route::get('/video/{id}/watching', 'WatchLogController@logWatch')->name('_log_watch_');
     });
 

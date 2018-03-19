@@ -6,12 +6,12 @@ use App\Actor;
 use App\ActorRelation;
 use App\Helpers\Constants;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActorsController extends Controller
 {
     public function saveActor(Request $request)
     {
-
         $this->validate($request, [
             'actor_name' => 'required|string',
             'actor_picture' => 'required|image|mimes:jpeg,png,jpg|max:10024'
@@ -20,18 +20,25 @@ class ActorsController extends Controller
 
         $actorImage = $request->file('actor_picture');
 
+        $imageName = md5(mt_rand()) . $actorImage->getClientOriginalName();
+
+        $actorImage->move(public_path(Constants::getUploadDirectory() . '/actors/'),
+            $imageName);
+
+        $actor = new Actor([
+            'actor_name' => $request->get('actor_name'),
+            'actor_picture' => $imageName,
+            'user_id' => Auth::id()
+        ]);
+
+        $actor->actor_name = $request->get('actor_name');
+        $actor->actor_picture = $imageName;
+        $actor->user_id = Auth::id();
+
+        $actor->save();
+
         try {
-            $imageName = md5(mt_rand()) . $actorImage->getClientOriginalName();
 
-            $actorImage->move(public_path(Constants::getUploadDirectory() . '/actors/'),
-                $imageName);
-
-            $actor = new Actor([
-                'actor_name' => $request->get('actor_name'),
-                'actor_picture' => $imageName
-            ]);
-
-            $actor->save();
         } catch (\Exception $e) {
             return redirect()->back()->withErrors([
                 'An error occurred while adding the actor'
@@ -74,6 +81,29 @@ class ActorsController extends Controller
         return redirect()->back()->with([
             'success' => 'Edit was successful'
         ]);
+    }
+
+    public function findActorByName(Request $request)
+    {
+
+        $actors = Actor::where('actor_name', 'like', '%' . $request->get("actor_name") . '%')->get();
+
+        if ($actors->count() > 0) {
+
+            foreach ($actors as $actor) {
+                if ($actor->user_id == Auth::id())
+                    $actor->belongsToUser = true;
+                else
+                    $actor->belongsToUser = false;
+            }
+
+            return redirect()->back()->with('actors', $actors);
+        }
+
+        return redirect()->back()->withErrors([
+            'actor' => 'No actor matches the name ' . $request->get('actor_name')
+        ]);
+
     }
 
     public function deleteActor($id)

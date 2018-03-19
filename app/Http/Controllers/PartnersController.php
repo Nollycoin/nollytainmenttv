@@ -85,7 +85,7 @@ class PartnersController extends Controller
         }
 
         $verify = TeamMember::where('team_id', $team->id)->where('user_id', $request->get('user_id'))->count();
-        if ($verify){
+        if ($verify) {
             return redirect()->back()->withErrors([
                 'error' => 'This user already exists on the team with this movie'
             ]);
@@ -117,7 +117,7 @@ class PartnersController extends Controller
         //TODO::PUT SOME RESTRICTION HERE
         $team_members = TeamMember::where('user_id', $id);
 
-        if ($team_members != null){
+        if ($team_members != null) {
             try {
                 $team_members->delete();
             } catch (\Exception $e) {
