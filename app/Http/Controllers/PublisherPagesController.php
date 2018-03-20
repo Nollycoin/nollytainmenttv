@@ -108,4 +108,12 @@ class PublisherPagesController extends Controller
     public function addActor(){
         return view('publisher.add_actor');
     }
+
+    public function editActor($id)
+    {
+        $actor = Actor::findOrFail($id);
+        return view('publisher.edit_actor', [
+            'actor' => $actor
+        ]);
+    }
 }

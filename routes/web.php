@@ -89,6 +89,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('actor/add', 'ActorsController@saveActor')->name('_save_actor');
     Route::post('actor/{id}/update', 'ActorsController@updateActor')->name('_update_actor');
 
+    Route::post('actor/{id}/delete', 'ActorsController@deleteActor');
+
     Route::post('video/{id}/update', 'VideosController@updateVideo')->name('_update_video');
     Route::get('video/{id}/delete', 'VideosController@deleteVideo')->name('_delete_video');
     Route::get('video/{id}/edit', 'AdminPagesController@editVideo')->name('_edit_video');
@@ -170,7 +172,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/publisher/actors', 'PublisherPagesController@actors')->name('_publisher_actors_');
         Route::post('/publisher/actor/find', 'ActorsController@findActorByName')->name('find_actor_by_name');
         Route::get('publisher/actor/add', 'PublisherPagesController@addActor')->name('_publisher_add_actor');
+        Route::get('publisher/actor/{id}/edit', 'PublisherPagesController@editActor')->name('publisher_edit_actor');
 
+        Route::get('/publisher/actor/{id}/add_from_existing', 'ActorsController@addFromExisting');
         Route::get('/video/{id}/watching', 'WatchLogController@logWatch')->name('_log_watch_');
     });
 

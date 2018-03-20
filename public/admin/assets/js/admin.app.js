@@ -57,7 +57,7 @@ function deleteCategory(id) {
 
 function deleteActor(id) {
     if (confirm('Are you sure you want to delete this actor?')) {
-        $.get('/admin/actor/' + id + '/delete', function (data) {
+        $.get('/actor/' + id + '/delete', function (data) {
             if (data) {
                 alert('Actor deleted successfully');
                 window.location.reload();
@@ -97,7 +97,7 @@ function deleteEpisode(id) {
     return false;
 }
 
-function deletePartner(id){
+function deletePartner(id) {
     if (confirm('Are you sure you want to delete this Partner')) {
         $.get('/publisher/partner/' + id + '/delete', function (data) {
             if (data) {
@@ -114,12 +114,26 @@ function deletePartner(id){
 
 /*functions below are used by publisher*/
 
-function getUnallocatedPercentage(movie_id){
-    $.get('/publisher/movie/'+movie_id+'/unallocated_percentage', function(data){
-        if(data){
+function getUnallocatedPercentage(movie_id) {
+    $.get('/publisher/movie/' + movie_id + '/unallocated_percentage', function (data) {
+        if (data) {
             data = JSON.parse(data);
             $('#available_percentage').html(data.unallocatedPercentage);
             $('#movieName').html(data.movieName);
         }
     });
+}
+
+function addActorFromExisting(id) {
+    if (confirm('Add this actor to your collection?')) {
+        $.get('/publisher/actor/' + id + '/add_from_existing', function (data) {
+            if (data) {
+                alert('Actor added to your collection successfully');
+                $('#actor-'+id).remove();
+            }
+            else {
+                alert('An error occurred while adding this actor to your collection');
+            }
+        });
+    }
 }

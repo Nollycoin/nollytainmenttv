@@ -13,7 +13,7 @@
     </a>
 @endsection
 
-@section('__active', 'active')
+@section('_partners_active', 'active')
 
 @section('body')
     <div class="content">
