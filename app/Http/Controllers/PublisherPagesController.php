@@ -59,21 +59,18 @@ class PublisherPagesController extends Controller
         ]);
     }
 
-    public
-    function addPartner()
+    public function addPartner()
     {
         return view('publisher.add_partner');
     }
 
-    public
-    function videos()
+    public function videos()
     {
         $videos = Movie::where('user_id', Auth::id())->paginate(20);
         return view('publisher.videos', ['movies' => $videos]);
     }
 
-    public
-    function addVideo()
+    public function addVideo()
     {
         $genres = Genre::all();
         $actors = Actor::all();
@@ -115,7 +112,8 @@ class PublisherPagesController extends Controller
         return view('publisher.actors', ['actors' => $actors]);
     }
 
-    public function addActor(){
+    public function addActor()
+    {
         return view('publisher.add_actor');
     }
 
