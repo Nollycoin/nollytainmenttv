@@ -23,29 +23,39 @@ class PublisherPagesController extends Controller
 
     public function partners()
     {
-        $team = [];
+        $teamArray = [];
 
-        $teams = Team::where('owner_id', Auth::id())->get();
 
-        if ($teams) {
-            foreach ($teams as $t) {
-                $teamMembers = TeamMember::where('team_id', $t->id)->get();
+        try {
+            $teams = Team::where('owner_id', Auth::id())->get();
 
-                if ($teamMembers != null) {
-                    foreach ($teamMembers as $teamMember) {
-                        $user = User::where('id', $teamMember->user_id)->first();
-                        $user->share = $teamMember->share;
+            if ($teams) {
+                foreach ($teams as $team) {
+                    $teamMembers = TeamMember::where('team_id', $team->id)->get();
 
-                        $user->share_movie = Movie::where('id', $t->movie_id)->first()->movie_name;
+                    if ($teamMembers != null) {
+                        foreach ($teamMembers as $teamMember) {
+                            $user = User::where('id', $teamMember->user_id)->first();
+                            $user->share = $teamMember->share;
 
-                        array_push($team, $user);
+                            $movie = Movie::where('id', $team->movie_id)->first();
+
+                            if ($movie != null)
+                                $user->share_movie = $movie->movie_name;
+                            else
+                                $user->share_movie = '';
+
+                            array_push($teamArray, $user);
+                        }
                     }
                 }
             }
+        } catch (\Exception $e) {
+            //handle Error here
         }
 
         return view('publisher.partners', [
-            'users' => $team
+            'users' => $teamArray
         ]);
     }
 
