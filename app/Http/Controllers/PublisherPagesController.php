@@ -73,7 +73,7 @@ class PublisherPagesController extends Controller
     public function addVideo()
     {
         $genres = Genre::all();
-        $actors = Actor::all();
+        $actors = Actor::where('user_id', Auth::id())->get();
         $settings = Setting::where('id', 1)->first();
 
 
@@ -86,10 +86,9 @@ class PublisherPagesController extends Controller
 
     public function editVideo($id)
     {
-
         $video = Movie::findOrFail($id);
         $genres = Genre::all();
-        $actors = Actor::all();
+        $actors = Actor::where('user_id', Auth::id())->get();
 
         foreach ($actors as $actor) {
             if (ActorRelation::where('movie_id', $id)->where('actor_id', $actor->id)->first() != null)

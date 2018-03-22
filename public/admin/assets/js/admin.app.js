@@ -71,7 +71,7 @@ function deleteActor(id) {
 
 function deleteVideo(id) {
     if (confirm('Are you sure you want to delete this video?')) {
-        $.get('/admin/video/' + id + '/delete', function (data) {
+        $.get('/video/' + id + '/delete', function (data) {
             if (data) {
                 alert('Video was deleted successfully');
                 window.location.reload();

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Actor;
 use App\ActorRelation;
 use App\Helpers\Constants;
-use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -112,23 +111,34 @@ class ActorsController extends Controller
     {
 
         try {
-            $actor = Actor::findOrFail($id);
+            $originalActor = Actor::findOrFail($id);
 
-            $act = new Actor();
+            $newActor = new Actor();
 
-            $act->actor_name = $actor->actor_name;
-            $act->actor_picture = $actor->actor_picture;
-            $act->user_id = Auth::id();
-            $act->cloned = 1;
-            $act->cloned_by = '';
-            $act->clones = $actor->id;
+            $newActor->actor_name = $originalActor->actor_name;
 
-            $actor->cloned_by = empty($actor->cloned_by) ? Auth::id() : $actor->cloned_by . '|' . Auth::id();
+            $pictureChunks = explode('.', $originalActor->actor_picture);
 
-            $actor->update();
+            $extensionOfOriginalActorPic = end($pictureChunks);
 
-            $act->save();
+            $newActor->actor_picture = md5(mt_rand()). time() .'.'. $extensionOfOriginalActorPic;
+
+            copy(public_path(Constants::getUploadDirectory() . '/actors/' . $originalActor->actor_picture),
+                public_path(Constants::getUploadDirectory() . '/actors/' . $newActor->actor_picture));
+
+            $newActor->user_id = Auth::id();
+            $newActor->cloned = 1;
+            $newActor->cloned_by = '';
+            $newActor->clones = $originalActor->id;
+
+            $originalActor->cloned_by = empty($originalActor->cloned_by) ? Auth::id() : $originalActor->cloned_by . '|' . Auth::id();
+
+            $originalActor->update();
+
+            $newActor->save();
         } catch (\Exception $e) {
+
+            dd($e->getMessage());
             return 'false';
         }
 
@@ -141,21 +151,23 @@ class ActorsController extends Controller
         $actor = Actor::findOrFail($id);
 
         try {
-            if($actor->cloned != 1){
-                unlink(public_path(Constants::getUploadDirectory() . '/actors/' . $actor->actor_picture));
-            }else{
-                $clone = Actor::findOrFail($actor->clones);
+            if ($actor->cloned == 1){
+                $originalActor = Actor::find($actor->clones);
 
-                $clone_array = explode('|', $clone->cloned_by);
+                $clonedByArray = explode('|', $originalActor->cloned_by);
 
-                foreach ($clone_array as $key => $value){
-                    if ($actor->clones == $value){
-                        unset($clone_array[$key]);
-                    }
+                foreach ($clonedByArray as $key => $value){
+                   if(Auth::id() == $value){
+                       array_splice($clonedByArray, $key, 1);
+                       $originalActor->cloned_by = implode('|', $clonedByArray);
+                       break;
+                   }
                 }
 
-                $clone->cloned_by = implode('|', $clone_array);
+                $originalActor->update();
+
             }
+            unlink(public_path(Constants::getUploadDirectory() . '/actors/' . $actor->actor_picture));
             ActorRelation::where('actor_id', $actor->id)->delete();
             $actor->delete();
         } catch (\Exception $e) {

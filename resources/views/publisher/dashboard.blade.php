@@ -12,7 +12,7 @@
 @section('body')
     <div class="content">
         <div class="container-fluid">
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="card">
                         <div class="content">
@@ -25,7 +25,7 @@
                                 <div class="col-xs-7">
                                     <div class="numbers">
                                         <p>Users</p>
-                                        {{--{{ $statistics->users }}--}}20
+                                        --}}{{--{{ $statistics->users }}--}}{{--20
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                 <div class="col-xs-7">
                                     <div class="numbers">
                                         <p>Videos</p>
-                                        {{--{{ $statistics->episodes }}--}}50
+                                        --}}{{--{{ $statistics->episodes }}--}}{{--50
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <div class="row">
 
                 <div class="col-md-12">
